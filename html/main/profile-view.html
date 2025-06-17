@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 상세 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Swiper.js CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        /* 버튼 스타일 */
+        .btn-primary {
+            @apply bg-primary text-white px-6 py-3 rounded-lg font-medium;
+        }
+        
+        .btn-secondary {
+            @apply border border-primary text-primary px-6 py-3 rounded-lg font-medium;
+        }
+        
+        .btn-text {
+            @apply text-primary underline font-medium;
+        }
+        
+        /* 프로필 사진 슬라이더 */
+        .swiper {
+            width: 100%;
+            height: 70vh;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 뱃지 스타일 */
+        .badge {
+            @apply bg-secondary px-3 py-1 rounded-full text-sm text-primary;
+        }
+        
+        /* 터치 가능한 요소 스타일 */
+        .touchable {
+            @apply cursor-pointer transition-opacity hover:opacity-70 active:opacity-50;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div id="app">
+        <!-- 프로필 사진 슬라이더 -->
+        <div class="swiper mySwiper relative w-full h-[70vh]">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide text-center flex justify-center items-center">
+                    <img src="https://picsum.photos/seed/person1/800/1200" alt="프로필 사진 1" class="block w-full h-full object-cover"/>
+                </div>
+                <div class="swiper-slide text-center flex justify-center items-center">
+                    <img src="https://picsum.photos/seed/person2/800/1200" alt="프로필 사진 2" class="block w-full h-full object-cover"/>
+                </div>
+                <div class="swiper-slide text-center flex justify-center items-center">
+                    <img src="https://picsum.photos/seed/person3/800/1200" alt="프로필 사진 3" class="block w-full h-full object-cover"/>
+                </div>
+                <div class="swiper-slide text-center flex justify-center items-center">
+                    <img src="https://picsum.photos/seed/person4/800/1200" alt="프로필 사진 4" class="block w-full h-full object-cover"/>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            
+            <!-- 닫기 버튼 -->
+            <a href="chat.html" class="absolute top-4 left-4 z-10 bg-black bg-opacity-30 rounded-full w-10 h-10 flex items-center justify-center text-white cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                <i class="fas fa-arrow-left text-lg"></i>
+            </a>
+            
+            <!-- 액션 버튼 -->
+            <div class="absolute bottom-4 right-4 z-10 flex space-x-3">
+                <button id="btn-share" class="bg-black bg-opacity-30 rounded-full w-10 h-10 flex items-center justify-center text-white cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <i class="fas fa-share-alt text-lg"></i>
+                </button>
+                <button id="btn-report" class="bg-black bg-opacity-30 rounded-full w-10 h-10 flex items-center justify-center text-white cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <i class="fas fa-flag text-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 프로필 정보 -->
+        <div class="px-5 py-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h1 class="text-2xl font-bold">지현, 27</h1>
+                    <p class="text-gray-500">서울 강남구 · 5km 이내</p>
+                </div>
+                <div>
+                    <span class="flex items-center text-green-500">
+                        <i class="fas fa-circle text-xs mr-1"></i>
+                        <span class="text-sm">온라인</span>
+                    </span>
+                </div>
+            </div>
+            
+            <!-- 기본 정보 -->
+            <div class="mb-6">
+                <h2 class="text-lg font-bold mb-3">기본 정보</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-graduation-cap text-gray-500 w-7"></i>
+                        <span>대학원 졸업</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-briefcase text-gray-500 w-7"></i>
+                        <span>마케팅 매니저</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-ruler-vertical text-gray-500 w-7"></i>
+                        <span>165cm</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-wine-glass-alt text-gray-500 w-7"></i>
+                        <span>가끔 마심</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-smoking-ban text-gray-500 w-7"></i>
+                        <span>비흡연</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-user-friends text-gray-500 w-7"></i>
+                        <span>ENFJ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 소개 -->
+            <div class="mb-6">
+                <h2 class="text-lg font-bold mb-3">소개</h2>
+                <p class="text-gray-700">
+                    안녕하세요! 저는 마케팅 분야에서 일하고 있는 지현입니다.
+                    여행과 독서, 사진 촬영이 취미이며 새로운 카페나 레스토랑 탐방하는 것을 좋아합니다.
+                    진정성 있는 대화와 서로를 존중하는 관계를 중요하게 생각합니다.
+                    함께 성장할 수 있는 파트너를 찾고 있어요.
+                </p>
+            </div>
+            
+            <!-- 관심사 -->
+            <div class="mb-6">
+                <h2 class="text-lg font-bold mb-3">관심사</h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">여행 ✈️</span>
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">독서 📚</span>
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">영화 🎬</span>
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">사진 📷</span>
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">카페 ☕</span>
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">요리 🍳</span>
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">하이킹 🥾</span>
+                    <span class="bg-secondary px-3 py-1 rounded-full text-sm text-primary">음악 감상 🎵</span>
+                </div>
+            </div>
+            
+            <!-- 이상형 -->
+            <div class="mb-6">
+                <h2 class="text-lg font-bold mb-3">이상형</h2>
+                <p class="text-gray-700">
+                    대화가 잘 통하고 서로의 관심사를 존중해주는 분.
+                    자신의 일이나 취미에 열정이 있고 목표를 향해 노력하는 모습이 멋진 분.
+                    유머 감각이 있고 함께 있을 때 편안함을 주는 파트너를 찾고 있어요.
+                </p>
+            </div>
+            
+            <!-- 가치관 나침반 -->
+            <div class="mb-8">
+                <h2 class="text-lg font-bold mb-3">가치관 나침반</h2>
+                <div class="bg-secondary p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                        <div class="w-4 h-4 bg-primary rounded-full mr-2"></div>
+                        <span class="font-medium text-sm">높은 일치도: 자기 계발, 가족 중시</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <div class="w-4 h-4 bg-amber-500 rounded-full mr-2"></div>
+                        <span class="font-medium text-sm">중간 일치도: 여행, 소통 방식</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-red-500 rounded-full mr-2"></div>
+                        <span class="font-medium text-sm">낮은 일치도: 종교적 관점</span>
+                    </div>
+                    <div class="mt-3">
+                        <a href="value-compass-compare.html" class="text-primary underline font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 액션 버튼 -->
+            <div class="flex justify-center gap-6 mt-6 pb-10">
+                <button class="w-14 h-14 rounded-full flex items-center justify-center bg-gray-100 text-gray-400 touchable">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+                <button class="w-14 h-14 rounded-full flex items-center justify-center bg-gold text-white touchable">
+                    <i class="fas fa-comment text-2xl"></i>
+                </button>
+                <button class="w-14 h-14 rounded-full flex items-center justify-center bg-primary text-white touchable">
+                    <i class="fas fa-heart text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 신고 모달 (초기에는 숨김) -->
+        <div id="report-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+            <div class="bg-white rounded-xl w-4/5 max-w-md">
+                <div class="p-4 border-b border-gray-100">
+                    <h3 class="font-bold text-lg text-center">프로필 신고</h3>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-600 mb-4">신고 이유를 선택해주세요:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-2 border border-gray-200 rounded-lg cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                            <input type="radio" name="report-reason" id="fake-profile" class="mr-3">
+                            <label for="fake-profile">가짜 프로필</label>
+                        </div>
+                        <div class="flex items-center p-2 border border-gray-200 rounded-lg cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                            <input type="radio" name="report-reason" id="inappropriate-content" class="mr-3">
+                            <label for="inappropriate-content">부적절한 콘텐츠</label>
+                        </div>
+                        <div class="flex items-center p-2 border border-gray-200 rounded-lg cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                            <input type="radio" name="report-reason" id="harassment" class="mr-3">
+                            <label for="harassment">괴롭힘 또는 혐오 발언</label>
+                        </div>
+                        <div class="flex items-center p-2 border border-gray-200 rounded-lg cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                            <input type="radio" name="report-reason" id="scam" class="mr-3">
+                            <label for="scam">사기 또는 스팸</label>
+                        </div>
+                        <div class="flex items-center p-2 border border-gray-200 rounded-lg cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                            <input type="radio" name="report-reason" id="other-reason" class="mr-3">
+                            <label for="other-reason">기타 사유</label>
+                        </div>
+                    </div>
+                    <textarea placeholder="추가 설명 (선택사항)" class="w-full border border-gray-200 rounded-lg p-3 mt-4 h-24"></textarea>
+                </div>
+                <div class="p-4 border-t border-gray-100 flex gap-3">
+                    <button id="btn-cancel-report" class="flex-1 border border-primary text-primary px-6 py-3 rounded-lg font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">취소</button>
+                    <button id="btn-submit-report" class="flex-1 bg-red-500 text-white py-3 rounded-lg font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">신고하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 슬라이더 초기화
+        var swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+            },
+        });
+        
+        // 필터 탭 전환
+        const filterTags = document.querySelectorAll('.bg-gray-100.text-gray-600.rounded-full.px-3.py-1.text-sm.whitespace-nowrap'); // Adjusted selector
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                filterTags.forEach(t => t.classList.remove('bg-primary', 'text-white')); // Adjusted classes
+                this.classList.add('bg-primary', 'text-white'); // Adjusted classes
+            });
+        });
+        
+        // 관심 표시 버튼
+        const interestBtns = document.querySelectorAll('.w-14.h-14.rounded-full.flex.items-center.justify-center.shadow-md'); // Adjusted selector
+        interestBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.bg-white.rounded-xl.shadow-sm.overflow-hidden.mb-6'); // Adjusted selector
+                
+                // 심볼에 따라 다른 액션 수행
+                if (this.querySelector('.fa-times')) {
+                    // 거절 (다음 카드로 이동)
+                    swiper.slideNext();
+                }
+            });
+        });
+        
+        // 신고 모달 제어
+        const reportModal = document.getElementById('report-modal');
+        const btnReport = document.getElementById('btn-report');
+        const btnCancelReport = document.getElementById('btn-cancel-report');
+        const btnSubmitReport = document.getElementById('btn-submit-report');
+        
+        btnReport.addEventListener('click', function() {
+            reportModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        btnCancelReport.addEventListener('click', function() {
+            reportModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        
+        btnSubmitReport.addEventListener('click', function() {
+            // 신고 제출 처리 (데모에서는 알림만 표시)
+            alert('신고가 접수되었습니다. 검토 후 조치하겠습니다.');
+            reportModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        
+        // 공유 기능
+        document.getElementById('btn-share').addEventListener('click', function() {
+            // 실제로는 Web Share API를 사용하거나 클립보드에 복사
+            alert('프로필 공유 기능은 준비 중입니다.');
+        });
+    </script>
+    
+    <!-- 하단 네비게이션 컴포넌트 스크립트 -->
+    <script src="../components/bottom-nav.js"></script>
+</body>
+</html> 

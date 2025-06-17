@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계정 삭제 - 성연</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .header-icon {
+            @apply w-10 h-10 flex items-center justify-center rounded-full;
+        }
+        .touchable {
+            @apply cursor-pointer transition-opacity hover:opacity-70 active:opacity-50;
+        }
+        .btn-danger {
+             @apply bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app">
+        <!-- 헤더 -->
+        <header class="bg-white p-5 flex justify-between items-center shadow-sm sticky top-0 z-20">
+            <div class="flex items-center">
+                <button onclick="history.back();" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 mr-3 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                     <i class="fas fa-arrow-left text-xl"></i>
+                </button>
+                <h1 class="text-xl font-bold">계정 삭제</h1>
+            </div>
+        </header>
+
+        <!-- 컨텐츠 영역 -->
+        <div class="px-5 py-8 max-w-md mx-auto">
+            <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                <i class="fas fa-skull-crossbones text-red-500 text-6xl mb-4"></i>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">정말로 계정을 삭제하시겠습니까?</h2>
+                <p class="text-gray-600 mb-6">계정을 삭제하면 모든 정보가 영구적으로 삭제되며 복구할 수 없습니다. 신중하게 결정해주세요.</p>
+                <button class="bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 w-full">계정 영구 삭제</button>
+                <button onclick="history.back();" class="mt-4 text-gray-600 hover:underline">취소</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

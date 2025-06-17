@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 활동 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+
+        html {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" class="pb-20">
+        <!-- 헤더 -->
+        <header class="bg-white p-4 flex justify-between items-center shadow-sm">
+            <div class="flex items-center">
+                <h1 class="text-xl font-bold">내 활동</h1>
+            </div>
+        </header>
+
+        <!-- 탭 네비게이션 -->
+        <div class="bg-white border-b border-gray-200">
+            <div class="container mx-auto px-4 max-w-lg flex">
+                <button class="tab-button flex-1 text-center py-3 border-b-2 border-transparent text-gray-500 font-medium active border-primary text-primary" data-tab="views">프로필 조회</button>
+                <button class="tab-button flex-1 text-center py-3 border-b-2 border-transparent text-gray-500 font-medium" data-tab="likes">관심 표시</button>
+            </div>
+        </div>
+
+        <!-- 메인 컨텐츠 -->
+        <main class="container mx-auto px-4 py-6 max-w-lg">
+            <!-- 프로필 조회 목록 탭 내용 -->
+            <div id="tab-views" class="tab-content">
+                <!-- 조회한 프로필 항목 (예시) -->
+                <div class="activity-item-card bg-white rounded-xl shadow-sm overflow-hidden mb-4">
+                     <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/seed/vieweduser1/60/60" alt="프로필 사진" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-3">
+                                <h3 class="font-medium">조회한 사용자 A</h3>
+                                <p class="text-sm text-gray-500">30세 · 서울</p>
+                                <p class="text-xs text-gray-400">조회 시간: 2023.10.26 14:30</p>
+                            </div>
+                        </div>
+                        <a href="profile-view.html?id=vieweduser1" class="text-primary">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                 <div class="activity-item-card bg-white rounded-xl shadow-sm overflow-hidden mb-4">
+                     <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/seed/vieweduser2/60/60" alt="프로필 사진" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-3">
+                                <h3 class="font-medium">조회한 사용자 B</h3>
+                                <p class="text-sm text-gray-500">32세 · 인천</p>
+                                <p class="text-xs text-gray-400">조회 시간: 2023.10.25 09:15</p>
+                            </div>
+                        </div>
+                        <a href="profile-view.html?id=vieweduser2" class="text-primary">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 더 많은 프로필 항목 추가 -->
+            </div>
+
+            <!-- 관심 표시 목록 탭 내용 -->
+            <div id="tab-likes" class="tab-content hidden">
+                 <!-- 관심 표시한 프로필 항목 (예시) -->
+                <div class="activity-item-card bg-white rounded-xl shadow-sm overflow-hidden mb-4">
+                     <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/seed/likeduser1/60/60" alt="프로필 사진" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-3">
+                                <h3 class="font-medium">관심 표시한 사용자 A</h3>
+                                <p class="text-sm text-gray-500">28세 · 부산</p>
+                                <p class="text-xs text-gray-400">관심 표시 시간: 2023.10.26 15:00</p>
+                            </div>
+                        </div>
+                        <a href="profile-view.html?id=likeduser1" class="text-primary">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                 <div class="activity-item-card bg-white rounded-xl shadow-sm overflow-hidden mb-4">
+                     <div class="p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/seed/likeduser2/60/60" alt="프로필 사진" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-3">
+                                <h3 class="font-medium">관심 표시한 사용자 B</h3>
+                                <p class="text-sm text-gray-500">35세 · 대구</p>
+                                <p class="text-xs text-gray-400">관심 표시 시간: 2023.10.25 11:20</p>
+                            </div>
+                        </div>
+                        <a href="profile-view.html?id=likeduser2" class="text-primary">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 더 많은 프로필 항목 추가 -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 탭 기능 스크립트
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and add to the clicked one
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active', 'border-primary', 'text-primary');
+                    btn.classList.add('border-transparent', 'text-gray-500');
+                });
+                button.classList.add('active', 'border-primary', 'text-primary');
+                button.classList.remove('border-transparent', 'text-gray-500');
+
+                // Hide all tab contents and show the relevant one
+                tabContents.forEach(content => content.classList.add('hidden'));
+                const targetTabId = button.dataset.tab;
+                document.getElementById(`tab-${targetTabId}`).classList.remove('hidden');
+            });
+        });
+
+        // URL 해시를 확인하여 초기 탭 설정
+        const hash = window.location.hash.substring(1);
+        const initialTab = hash || 'views'; // Default to 'views' if no hash
+        const initialButton = document.querySelector(`.tab-button[data-tab="${initialTab}"]`);
+        if (initialButton) {
+            initialButton.click(); // Simulate click to activate the tab
+        } else {
+             // Fallback to default if hash doesn't match any tab
+            document.querySelector('.tab-button[data-tab="views"]').click();
+        }
+    </script>
+
+    <!-- 하단 네비게이션 컴포넌트 스크립트 -->
+    <script src="../components/bottom-nav.js"></script>
+</body>
+</html> 

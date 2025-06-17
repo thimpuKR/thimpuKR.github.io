@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피드 상세</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div class="max-w-lg mx-auto pb-20">
+        <!-- 히어로 헤드 -->
+        <div class="relative w-full h-[50vh] min-h-[300px] bg-gray-200 overflow-hidden rounded-b-2xl shadow mb-4">
+
+            <!-- 프로필 사진 슬라이더 패턴 적용 -->
+            <div class="swiper mySwiper absolute inset-0 w-full h-full z-10">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide flex justify-center items-center">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="피드 이미지1" class="w-full h-full object-cover rounded-b-2xl"/>
+                    </div>
+                    <div class="swiper-slide flex justify-center items-center">
+                        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="피드 이미지2" class="w-full h-full object-cover rounded-b-2xl"/>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="absolute top-4 left-4 z-30">
+                <button onclick="history.back()" class="bg-white/50 hover:bg-white text-gray-700 rounded-full p-2 flex items-center" title="뒤로 가기">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/30 to-transparent p-6 pt-16 z-20">
+                <span class="inline-block text-xs bg-green-500 text-white px-2 py-0.5 rounded mb-2">후기</span>
+                <h2 class="text-2xl font-bold text-white mb-2">첫 매칭 성공 후기</h2>
+                <div class="flex items-center space-x-4 text-gray-200 text-sm mb-2">
+                    <span>2024.05.30</span>
+                    <div class="flex items-center"><i class="fas fa-heart mr-1 text-red-300"></i> 27</div>
+                    <div class="flex items-center"><i class="fas fa-comment mr-1"></i> 8</div>
+                    <div class="flex items-center"><i class="fas fa-eye mr-1"></i> 542</div>
+                </div>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+        <script>
+        // 피드 히어로 헤드 슬라이더
+        var swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+            },
+        });
+        </script>
+
+        <!-- 본문 카드 -->
+        <div class="bg-white p-6 rounded-2xl shadow -mt-6 z-10 relative">
+            <div class="text-gray-700 text-base whitespace-pre-line mb-4">
+                <!-- 도입 -->
+                안녕하세요 여러분! 😊</br>진심연결에서 첫 매칭에 성공한 기쁨을 여러분과 나누고 싶어 이렇게 후기를 남깁니다! 두근두근💓</br><!-- 전개 --></br>사실 처음 가입할 때는 "정말 괜찮은 분을 만날 수 있을까?" 하는 걱정이 많았어요. 온보딩 질문에 답하면서 나 자신을 돌아보는 시간도 가졌고, 프로필을 채우면서 점점 설렘이 커졌답니다.</br>매칭된 분과의 첫 대화는 생각보다 자연스러웠어요! 가치관 나침반에서 서로의 생각을 확인할 때, "아! 나랑 잘 맞는 분이구나!" 싶어서 괜히 혼자 미소 짓기도 했답니다. 😆</br><!-- 전환 --></br>그리고 드디어! 직접 만나기로 한 날이 다가왔어요.</br><!-- 절정 --></br>처음 만남은 가을 햇살이 부드럽게 내리던 카페에서 진행했는데, 긴장 반 설렘 반으로 나갔어요.</br>카페 앞 은행나무는 노랗게 물들고, 거리엔 낙엽이 바스락바스락 🍁🍂</br>                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="첫 만남 카페" class="w-full h-40 object-cover rounded-lg my-4"></br>따뜻한 커피 한 잔과 함께 시작된 대화는 정말 편안했고, 창밖으로 보이는 가을 풍경 덕분에 마음까지 포근해졌어요. 서로의 이야기를 진심으로 들어주고 존중해주는 분위기라서 오랜만에 마음이 몽글몽글해졌어요. ☕️🍂💕</br>카페 안에는 은은한 재즈 음악이 흐르고, 서로의 미소에 가을 햇살이 더해져 정말 영화 같은 순간이었답니다.🍁</br><!-- 마무리 --></br>아직은 시작이지만, 이런 만남이 계속된다면 정말 멋진 인연이 될 것 같아요!</br>진심연결 덕분에 다시 한 번 설렘을 느낄 수 있었고, 저처럼 망설이는 분들에게 꼭 추천드리고 싶어요!</br>가을의 따뜻함처럼, 모두에게 포근한 인연이 찾아오길 바라며 저의 첫 매칭 성공 후기를 마칩니다! 🍂🍁🧣</br>- 40대 여성, 이혼 경험 有, 서울</br>(다음엔 더 행복한 소식과 함께, 낙엽처럼 예쁜 추억을 안고 올게요! 🌸)
+            </div>
+        </div>
+
+        <!-- 설문 영역 (예시) -->
+        <div class="bg-white p-6 rounded-2xl shadow mb-4">
+            <h3 class="font-bold text-lg mb-2">가장 선호하는 만남 장소는?</h3>
+            <form id="detail-survey-form">
+                <div class="space-y-2 mb-2">
+                    <label class="flex items-center space-x-2"><input type="radio" name="detail-survey" value="카페" class="accent-blue-500"> <span>카페</span></label>
+                    <label class="flex items-center space-x-2"><input type="radio" name="detail-survey" value="공원" class="accent-blue-500"> <span>공원</span></label>
+                    <label class="flex items-center space-x-2"><input type="radio" name="detail-survey" value="레스토랑" class="accent-blue-500"> <span>레스토랑</span></label>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white rounded py-1 font-bold">투표하기</button>
+            </form>
+            <!-- 통계 (기본 숨김) -->
+            <div id="detail-survey-stats" class="hidden mt-4 space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                    <span>카페</span>
+                    <span>45% (9명)</span>
+                </div>
+                <div class="w-full bg-gray-100 rounded h-2 mb-1">
+                    <div class="bg-blue-400 h-2 rounded" style="width:45%"></div>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                    <span>공원</span>
+                    <span>30% (6명)</span>
+                </div>
+                <div class="w-full bg-gray-100 rounded h-2 mb-1">
+                    <div class="bg-blue-300 h-2 rounded" style="width:30%"></div>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                    <span>레스토랑</span>
+                    <span>25% (5명)</span>
+                </div>
+                <div class="w-full bg-gray-100 rounded h-2 mb-1">
+                    <div class="bg-blue-200 h-2 rounded" style="width:25%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 댓글 영역 -->
+        <div class="bg-white p-6 mt-4 rounded-2xl shadow">
+            <h3 class="font-bold text-lg mb-3">댓글 <span class="text-primary">3</span></h3>
+            <div class="space-y-4 mb-4">
+                <div class="border-b pb-2">
+                    <div class="flex items-center mb-1 justify-between">
+                        <div class="flex items-center">
+                            <span class="inline-block w-2 h-2 rounded-full bg-green-400 mr-2"></span>
+                            <span class="font-bold text-sm mr-2">닉네임NEW</span>
+                            <span class="text-xs text-gray-400">방금 전</span>
+                        </div>
+                        <button class="ml-2 text-gray-300 hover:text-red-500 transition" title="삭제"><i class="fas fa-trash text-xs"></i></button>
+                    </div>
+                    <div class="text-gray-700 text-sm">정말 따뜻한 후기네요!<br>저도 용기 내서 가입해볼게요.<br>가을 감성 가득 느껴집니다. 🍁</div>
+                    <button class="flex items-center text-xs text-gray-500 hover:text-primary mt-4"><i class="fas fa-comment-dots mr-1"></i>댓글 달기</button>
+                </div>
+                <div class="border-b pb-2">
+                    <div class="flex items-center mb-1 justify-between">
+                        <div class="flex items-center">
+                            <span class="font-bold text-sm mr-2">닉네임1</span>
+                            <span class="text-xs text-gray-400">2024.06.01</span>
+                        </div>
+                        <button class="ml-2 text-gray-300 hover:text-red-500 transition" title="삭제"><i class="fas fa-trash text-xs"></i></button>
+                    </div>
+                    <div class="text-gray-700 text-sm">좋은 정보 감사합니다.<br>저도 첫 만남이 기대돼요!</div>
+                    <button class="flex items-center text-xs text-gray-500 hover:text-primary mt-4"><i class="fas fa-comment-dots mr-1"></i>댓글 달기</button>
+                    <!-- 대댓글 예시 -->
+                    <div class="ml-6 mt-3 space-y-2">
+                        <div class="flex items-center mb-1 justify-between">
+                            <div class="flex items-center">
+                                <span class="font-bold text-xs mr-2 text-primary">운영자</span>
+                                <span class="text-xs text-gray-400">2024.06.01</span>
+                            </div>
+                            <button class="ml-2 text-gray-300 hover:text-red-500 transition" title="삭제" style="font-size:12px;"><i class="fas fa-trash text-xs"></i></button>
+                        </div>
+                        <div class="bg-gray-50 border-l-4 border-primary/30 rounded-r px-3 py-2 text-xs text-gray-700">닉네임1님, 응원 감사합니다!<br>진심연결에서 좋은 인연 만나시길 바랄게요. 😊</div>
+                        <button class="flex items-center text-xs text-gray-400 hover:text-primary mt-1 ml-1"><i class="fas fa-comment-dots mr-1"></i>댓글 달기</button>
+                    </div>
+                </div>
+                <div class="border-b pb-2">
+                    <div class="flex items-center mb-1 justify-between">
+                        <div class="flex items-center">
+                            <span class="font-bold text-sm mr-2">닉네임2</span>
+                            <span class="text-xs text-gray-400">2024.06.01</span>
+                        </div>
+                        <button class="ml-2 text-gray-300 hover:text-red-500 transition" title="삭제"><i class="fas fa-trash text-xs"></i></button>
+                    </div>
+                    <div class="text-gray-700 text-sm">점검 시간 꼭 확인할게요!<br>후기 읽으니 저도 설레네요.<br>행복한 만남 응원합니다.<br><button class='text-primary text-xs underline ml-1'>더보기</button></div>
+                    <button class="flex items-center text-xs text-gray-500 hover:text-primary mt-4"><i class="fas fa-comment-dots mr-1"></i>댓글 달기</button>
+
+                    <!-- 댓글 입력 -->
+                    <form class="relative flex items-center mt-2 w-full">
+                        <input type="text" class="flex-1 border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary pr-10" placeholder="댓글을 입력하세요" style="min-width:0;">
+                        <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-primary hover:text-green-700 focus:outline-none" style="padding:0; background:none; border:none;">
+                            <i class="fas fa-paper-plane text-lg"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="border-b pb-2">
+                    <div class="flex items-center mb-1 justify-between">
+                        <div class="flex items-center">
+                            <span class="font-bold text-sm mr-2">닉네임3</span>
+                            <span class="text-xs text-gray-400">2024.06.01</span>
+                        </div>
+                        <button class="ml-2 text-gray-300 hover:text-red-500 transition" title="삭제"><i class="fas fa-trash text-xs"></i></button>
+                    </div>
+                    <div class="text-gray-700 text-sm">항상 수고 많으십니다.<br>가을 분위기 너무 좋아요.<br>진심연결 화이팅!<br>저도 후기 남기고 싶네요.<br><button class='text-primary text-xs underline ml-1'>더보기</button></div>
+                    <button class="flex items-center text-xs text-gray-500 hover:text-primary mt-4"><i class="fas fa-comment-dots mr-1"></i>댓글 달기</button>
+                </div>
+                <div>
+                    <div class="flex items-center mb-1 justify-between">
+                        <div class="flex items-center">
+                            <span class="font-bold text-sm mr-2">닉네임4</span>
+                            <span class="text-xs text-gray-400">2024.06.01</span>
+                        </div>
+                        <button class="ml-2 text-gray-300 hover:text-red-500 transition" title="삭제"><i class="fas fa-trash text-xs"></i></button>
+                    </div>
+                    <div class="text-gray-700 text-sm">이런 후기 보면 힘이 나요!<br>모두에게 좋은 인연이 오길 바랍니다.</div>
+                    <button class="flex items-center text-xs text-gray-500 hover:text-primary mt-4"><i class="fas fa-comment-dots mr-1"></i>댓글 달기</button>
+                </div>
+            </div>
+            <!-- 댓글 입력 -->
+            <form class="relative flex items-center mt-4 w-full">
+                <input type="text" class="flex-1 border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary pr-10" placeholder="댓글을 입력하세요" style="min-width:0;">
+                <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-primary hover:text-green-700 focus:outline-none" style="padding:0; background:none; border:none;">
+                    <i class="fas fa-paper-plane text-lg"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+    // 관리자 여부 (실제 서비스에서는 로그인 정보로 판단)
+    const isAdmin = true; // 데모용
+    if (isAdmin) {
+        document.getElementById('btn-feed-edit')?.classList.remove('hidden');
+        document.getElementById('btn-feed-delete-detail')?.classList.remove('hidden');
+        document.getElementById('btn-feed-delete-detail')?.addEventListener('click', function() {
+            if (confirm('정말로 이 피드를 삭제하시겠습니까?')) {
+                alert('삭제되었습니다.');
+                window.location.href = 'feed.html';
+            }
+        });
+    }
+
+    // --- 댓글 mock 데이터 및 렌더링 ---
+    const comments = [
+        { nickname: '닉네임NEW', time: '방금 전', content: '정말 따뜻한 후기네요!<br>저도 용기 내서 가입해볼게요.<br>가을 감성 가득 느껴집니다. 🍁', isNew: true },
+        { nickname: '닉네임1', time: '2024.06.01', content: '좋은 정보 감사합니다.<br>저도 첫 만남이 기대돼요!', replies: [
+            { nickname: '운영자', time: '2024.06.01', content: '닉네임1님, 응원 감사합니다!<br>진심연결에서 좋은 인연 만나시길 바랄게요. 😊', isAdmin: true }
+        ] },
+        { nickname: '닉네임2', time: '2024.06.01', content: '점검 시간 꼭 확인할게요!<br>후기 읽으니 저도 설레네요.<br>행복한 만남 응원합니다.<br><button class=\'text-primary text-xs underline ml-1\'>더보기</button>' },
+        { nickname: '닉네임3', time: '2024.06.01', content: '항상 수고 많으십니다.<br>가을 분위기 너무 좋아요.<br>진심연결 화이팅!<br>저도 후기 남기고 싶네요.<br><button class=\'text-primary text-xs underline ml-1\'>더보기</button>' },
+        { nickname: '닉네임4', time: '2024.06.01', content: '이런 후기 보면 힘이 나요!<br>모두에게 좋은 인연이 오길 바랍니다.' }
+    ];
+
+    function renderComments() {
+        const area = document.querySelector('.space-y-4.mb-4');
+        if (!area) return;
+        area.innerHTML = comments.map(c => `
+            <div class="border-b pb-2">
+                <div class="flex items-center mb-1 justify-between">
+                    <div class="flex items-center">
+                        ${c.isNew ? '<span class="inline-block w-2 h-2 rounded-full bg-green-400 mr-2"></span>' : ''}
+                        <span class="font-bold text-sm mr-2">${c.nickname}${c.isAdmin ? '<span class=\'text-primary ml-1\'>(운영자)</span>' : ''}</span>
+                        <span class="text-xs text-gray-400">${c.time}</span>
+                    </div>
+                    <button class="ml-2 text-gray-300 hover:text-red-500 transition" title="삭제"><i class="fas fa-trash text-xs"></i></button>
+                </div>
+                <div class="text-gray-700 text-sm">${c.content}</div>
+                <button class="flex items-center text-xs text-gray-500 hover:text-primary mt-4"><i class="fas fa-comment-dots mr-1"></i>댓글 달기</button>
+                ${c.replies ? `<div class='ml-6 mt-3 space-y-2'>${c.replies.map(r => `
+                    <div class='flex items-center mb-1 justify-between'>
+                        <div class='flex items-center'>
+                            <span class='font-bold text-xs mr-2 text-primary'>${r.nickname}</span>
+                            <span class='text-xs text-gray-400'>${r.time}</span>
+                        </div>
+                        <button class='ml-2 text-gray-300 hover:text-red-500 transition' title='삭제' style='font-size:12px;'><i class='fas fa-trash text-xs'></i></button>
+                    </div>
+                    <div class='bg-gray-50 border-l-4 border-primary/30 rounded-r px-3 py-2 text-xs text-gray-700'>${r.content}</div>
+                    <button class='flex items-center text-xs text-gray-400 hover:text-primary mt-1 ml-1'><i class='fas fa-comment-dots mr-1'></i>댓글 달기</button>
+                `).join('')}</div>` : ''}
+            </div>
+        `).join('');
+    }
+    renderComments();
+
+    // 설문 참여/통계 토글 (데모용)
+    document.getElementById('detail-survey-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('detail-survey-form').classList.add('hidden');
+        document.getElementById('detail-survey-stats').classList.remove('hidden');
+    });
+    </script>
+    <script src="../components/bottom-nav.js"></script>
+</body>
+</html> 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고객 센터 - 성연</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app">
+        <!-- 헤더 -->
+        <header class="bg-white p-5 flex justify-between items-center shadow-sm sticky top-0 z-20">
+            <div class="flex items-center">
+                <button onclick="history.back();" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 mr-3 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                     <i class="fas fa-arrow-left text-xl"></i>
+                </button>
+                <h1 class="text-xl font-bold">고객 센터</h1>
+            </div>
+        </header>
+
+        <!-- 컨텐츠 영역 -->
+        <div class="px-5 py-8 max-w-3xl mx-auto">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">자주 묻는 질문 (FAQ)</h2>
+                <!-- FAQ 목록 예시 -->
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-1">Q: 회원가입은 어떻게 하나요?</h3>
+                        <p class="text-gray-600 text-sm">A: 회원가입 페이지에서 이메일 주소와 비밀번호를 입력하여 가입할 수 있습니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-1">Q: 비밀번호를 잊어버렸어요.</h3>
+                        <p class="text-gray-600 text-sm">A: 로그인 페이지 하단의 '비밀번호 찾기' 링크를 통해 재설정할 수 있습니다.</p>
+                    </div>
+                    <!-- FAQ 항목 추가 -->
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">문의하기</h2>
+                <p class="text-gray-700 mb-4">자주 묻는 질문에서 원하는 답변을 찾지 못하셨다면, 아래 방법을 통해 문의해주세요.</p>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="contact-us.html" class="flex justify-between items-center text-gray-700 hover:text-blue-600">
+                            1:1 문의 작성
+                            <span>></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:support@example.com" class="flex justify-between items-center text-gray-700 hover:text-blue-600">
+                            이메일 문의
+                            <span>></span>
+                        </a>
+                    </li>
+                    <!-- 전화 문의 등 추가 -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        /* 버튼 스타일 */
+        /* .btn-primary {
+            @apply bg-primary text-white px-6 py-3 rounded-lg font-medium;
+        }
+        
+        .btn-secondary {
+            @apply border border-primary text-primary px-6 py-3 rounded-lg font-medium;
+        }
+        
+        .btn-text {
+            @apply text-primary underline font-medium;
+        }
+        
+        /* 진행 바 스타일 */
+        .progress-bar {
+            @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
+        }
+        
+        .progress-value {
+            @apply h-full bg-primary rounded-full;
+        } */
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div id="app" class="max-w-md mx-auto p-6 min-h-screen flex flex-col">
+        <!-- 헤더 -->
+        <div class="flex items-center mb-6">
+            <a href="../index.html" class="text-gray-700">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <h1 class="text-xl font-semibold ml-4">회원가입</h1>
+        </div>
+        
+        <!-- 진행 상태 표시 -->
+        <div class="mb-8">
+            <div class="flex justify-between text-sm mb-2">
+                <span>약관 동의</span>
+                <span>계정 정보</span>
+                <span>본인 인증</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-primary rounded-full" style="width: 33%"></div>
+            </div>
+        </div>
+        
+        <!-- 약관 동의 단계 -->
+        <div id="step-agreement" class="flex flex-col gap-6">
+            <p class="text-gray-700">서비스 이용을 위해 필수 약관에 동의해주세요.</p>
+            
+            <!-- 약관 체크 리스트 -->
+            <div class="flex flex-col gap-4 bg-secondary p-4 rounded-lg">
+                <!-- 전체 동의 -->
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="check-all" class="mt-1 w-5 h-5">
+                    <label for="check-all" class="text-lg font-medium">모두 동의합니다</label>
+                </div>
+                <hr class="border-gray-300">
+                
+                <!-- 개별 약관 -->
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="check-service" class="mt-1 w-5 h-5">
+                    <div class="flex flex-col gap-1">
+                        <label for="check-service" class="font-medium">[필수] 서비스 이용약관</label>
+                        <button class="text-sm text-gray-600 underline text-left">내용 보기</button>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="check-privacy" class="mt-1 w-5 h-5">
+                    <div class="flex flex-col gap-1">
+                        <label for="check-privacy" class="font-medium">[필수] 개인정보 처리방침</label>
+                        <button class="text-sm text-gray-600 underline text-left">내용 보기</button>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="check-location" class="mt-1 w-5 h-5">
+                    <div class="flex flex-col gap-1">
+                        <label for="check-location" class="font-medium">[선택] 위치기반 서비스 이용약관</label>
+                        <button class="text-sm text-gray-600 underline text-left">내용 보기</button>
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="check-marketing" class="mt-1 w-5 h-5">
+                    <div class="flex flex-col gap-1">
+                        <label for="check-marketing" class="font-medium">[선택] 마케팅 정보 수신 동의</label>
+                        <button class="text-sm text-gray-600 underline text-left">내용 보기</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="btn-to-account" class="bg-primary text-white px-6 py-3 rounded-lg font-medium mt-4" disabled>다음</button>
+        </div>
+        
+        <!-- 계정 정보 입력 단계 (초기에는 숨김) -->
+        <div id="step-account" class="flex flex-col gap-6 hidden">
+            <p class="text-gray-700">회원님의 계정 정보를 입력해주세요.</p>
+            
+            <!-- 소셜 로그인 옵션 -->
+            <div class="flex flex-col gap-4">
+                <button class="flex items-center justify-center gap-3 border border-gray-300 p-3 rounded-lg">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google 로고" class="w-6 h-6">
+                    <span>Google로 계속하기</span>
+                </button>
+                <button class="flex items-center justify-center gap-3 border border-gray-300 p-3 rounded-lg bg-yellow-50">
+                    <img src="https://www.svgrepo.com/show/473664/kakao.svg" alt="Kakao 로고" class="w-6 h-6">
+                    <span>Kakao로 계속하기</span>
+                </button>
+            </div>
+            
+            <div class="flex items-center gap-4 my-2">
+                <hr class="flex-1 border-gray-300">
+                <span class="text-gray-500 text-sm">또는</span>
+                <hr class="flex-1 border-gray-300">
+            </div>
+            
+            <!-- 직접 입력 폼 -->
+            <form class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                    <label for="email" class="font-medium">이메일</label>
+                    <input type="email" id="email" class="border border-gray-300 rounded-lg p-3" placeholder="이메일 주소 입력">
+                </div>
+                
+                <div class="flex flex-col gap-2">
+                    <label for="password" class="font-medium">비밀번호</label>
+                    <div class="relative">
+                        <input type="password" id="password" class="border border-gray-300 rounded-lg p-3 w-full" placeholder="8자 이상, 영문/숫자/특수문자 조합">
+                        <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500">8자 이상, 영문/숫자/특수문자 중 2가지 이상 조합</p>
+                </div>
+                
+                <div class="flex flex-col gap-2">
+                    <label for="password-confirm" class="font-medium">비밀번호 확인</label>
+                    <input type="password" id="password-confirm" class="border border-gray-300 rounded-lg p-3" placeholder="비밀번호 재입력">
+                </div>
+            </form>
+            
+            <div class="flex gap-4 mt-6">
+                <button id="btn-back-to-agreement" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium flex-1">이전</button>
+                <button id="btn-to-verification" class="bg-primary text-white px-6 py-3 rounded-lg font-medium flex-1">다음</button>
+            </div>
+        </div>
+        
+        <!-- 본인 인증 단계 (초기에는 숨김) -->
+        <div id="step-verification" class="flex flex-col gap-6 hidden">
+            <p class="text-gray-700 mb-2">본인 인증을 위해 휴대폰 번호를 입력해주세요.</p>
+            <p class="text-sm text-gray-500 mb-4">안전한 서비스 이용과 커뮤니티 보호를 위해 본인 확인이 필요합니다.</p>
+            
+            <form class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                    <label for="phone" class="font-medium">휴대폰 번호</label>
+                    <div class="flex gap-2">
+                        <input type="tel" id="phone" class="border border-gray-300 rounded-lg p-3 flex-1" placeholder="'-' 없이 입력">
+                        <button id="btn-request-code" class="whitespace-nowrap border border-primary text-primary px-3 py-2 rounded-lg">인증번호 요청</button>
+                    </div>
+                </div>
+                
+                <div id="verification-code-section" class="flex flex-col gap-2 hidden">
+                    <div class="flex justify-between">
+                        <label for="verification-code" class="font-medium">인증번호</label>
+                        <span class="text-red-500 text-sm" id="timer">03:00</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" id="verification-code" class="border border-gray-300 rounded-lg p-3 flex-1" placeholder="인증번호 6자리 입력">
+                        <button id="btn-verify-code" class="whitespace-nowrap bg-gray-200 text-gray-500 px-3 py-2 rounded-lg">확인</button>
+                    </div>
+                    <p class="text-xs text-gray-500">인증번호가 오지 않나요? <button class="text-primary">재전송</button></p>
+                </div>
+            </form>
+            
+            <div class="flex gap-4 mt-6">
+                <button id="btn-back-to-account" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium flex-1">이전</button>
+                <a href="signup-onboarding.html" id="btn-complete-signup" class="bg-primary text-white px-6 py-3 rounded-lg font-medium flex-1 text-center hidden">가입 완료</a>
+                <button id="btn-continue-signup" class="bg-primary text-white px-6 py-3 rounded-lg font-medium flex-1">다음</button>
+            </div>
+        </div>
+        
+        <!-- 하단 안내 -->
+        <div class="mt-auto text-center text-gray-500 text-sm py-4">
+            <p>이미 계정이 있으신가요? <a href="login.html" class="text-primary font-medium">로그인</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // 약관 동의 관련
+        const checkAllEl = document.getElementById('check-all');
+        const checkServiceEl = document.getElementById('check-service');
+        const checkPrivacyEl = document.getElementById('check-privacy');
+        const checkLocationEl = document.getElementById('check-location');
+        const checkMarketingEl = document.getElementById('check-marketing');
+        const btnToAccount = document.getElementById('btn-to-account');
+        
+        // 전체 동의 처리
+        checkAllEl.addEventListener('change', function() {
+            const isChecked = this.checked;
+            checkServiceEl.checked = isChecked;
+            checkPrivacyEl.checked = isChecked;
+            checkLocationEl.checked = isChecked;
+            checkMarketingEl.checked = isChecked;
+            updateNextButton();
+        });
+        
+        // 개별 체크박스 변경 시 전체 동의 상태 업데이트
+        [checkServiceEl, checkPrivacyEl, checkLocationEl, checkMarketingEl].forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allChecked = checkServiceEl.checked && 
+                                 checkPrivacyEl.checked && 
+                                 checkLocationEl.checked && 
+                                 checkMarketingEl.checked;
+                checkAllEl.checked = allChecked;
+                updateNextButton();
+            });
+        });
+        
+        // 필수 항목 체크 시에만 다음 버튼 활성화
+        function updateNextButton() {
+            btnToAccount.disabled = !(checkServiceEl.checked && checkPrivacyEl.checked);
+        }
+        
+        // 단계 전환 함수들
+        document.getElementById('btn-to-account').addEventListener('click', function() {
+            document.getElementById('step-agreement').classList.add('hidden');
+            document.getElementById('step-account').classList.remove('hidden');
+            document.querySelector('.progress-value').style.width = '66%';
+        });
+        
+        document.getElementById('btn-back-to-agreement').addEventListener('click', function() {
+            document.getElementById('step-account').classList.add('hidden');
+            document.getElementById('step-agreement').classList.remove('hidden');
+            document.querySelector('.progress-value').style.width = '33%';
+        });
+        
+        document.getElementById('btn-to-verification').addEventListener('click', function() {
+            document.getElementById('step-account').classList.add('hidden');
+            document.getElementById('step-verification').classList.remove('hidden');
+            document.querySelector('.progress-value').style.width = '100%';
+        });
+        
+        document.getElementById('btn-back-to-account').addEventListener('click', function() {
+            document.getElementById('step-verification').classList.add('hidden');
+            document.getElementById('step-account').classList.remove('hidden');
+            document.querySelector('.progress-value').style.width = '66%';
+        });
+        
+        // 인증번호 요청 처리
+        document.getElementById('btn-request-code').addEventListener('click', function() {
+            document.getElementById('verification-code-section').classList.remove('hidden');
+            
+            // 타이머 시작
+            let timeLeft = 180; // 3분
+            const timerEl = document.getElementById('timer');
+            const timerId = setInterval(function() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                    timerEl.textContent = "00:00";
+                    alert("인증 시간이 만료되었습니다. 다시 시도해주세요.");
+                }
+                
+                timeLeft--;
+            }, 1000);
+        });
+        
+        // 인증번호 확인 처리
+        document.getElementById('btn-verify-code').addEventListener('click', function() {
+            const code = document.getElementById('verification-code').value;
+            if (code.length === 6) {
+                alert("인증에 성공했습니다!");
+                document.getElementById('btn-continue-signup').classList.add('hidden');
+                document.getElementById('btn-complete-signup').classList.remove('hidden');
+            } else {
+                alert("유효한 인증번호를 입력해주세요.");
+            }
+        });
+
+        // '다음' 버튼 클릭 시 온보딩 페이지로 이동
+        document.getElementById('btn-continue-signup').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'signup-onboarding.html';
+        });
+    </script>
+</body>
+</html> 

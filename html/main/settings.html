@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설정 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        /* 버튼 스타일 */
+        
+        /* 하단 네비게이션 */
+        
+        /* 설정 항목 스타일 */
+        
+        /* 터치 가능한 요소 스타일 */
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" class="pb-20"> <!-- 하단 네비게이션 공간 확보 -->
+        <!-- 헤더 -->
+        <header class="bg-white p-4 flex items-center shadow-sm">
+            <a href="profile.html" class="mr-3 text-gray-700 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <h1 class="text-xl font-bold">설정</h1>
+        </header>
+        
+        <!-- 계정 정보 -->
+        <div class="bg-white p-5 flex items-center border-b border-gray-200">
+            <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                <img src="https://picsum.photos/seed/user/200/200" alt="프로필 사진" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h2 class="font-bold text-lg">사용자 이름</h2>
+                <p class="text-gray-500 text-sm">user@example.com</p>
+                <a href="profile.html" class="text-primary text-sm mt-1 inline-block cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">프로필 보기</a>
+            </div>
+        </div>
+        
+        <!-- 구독 정보 -->
+        <div class="bg-white px-5 py-4 border-b border-gray-200 flex justify-between items-center">
+            <div>
+                <h3 class="font-medium">구독</h3>
+                <p class="text-gray-500 text-sm">기본 회원</p>
+            </div>
+            <a href="subscription.html" class="bg-gold px-4 py-2 rounded-full text-white text-sm font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                업그레이드
+            </a>
+        </div>
+        
+        <!-- 설정 섹션: 계정 설정 -->
+        <div class="mt-4">
+            <div class="bg-gray-100 px-5 py-2">
+                <h3 class="text-sm font-medium text-gray-500">계정 설정</h3>
+            </div>
+            <div class="bg-white">
+                <div class="flex items-center justify-between p-4 border-b border-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-text-height text-gray-500 w-6"></i>
+                        <span class="ml-3">글자 크기</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button id="font-small" class="px-3 py-1 rounded border text-sm font-medium transition-colors">작게</button>
+                        <button id="font-medium" class="px-3 py-1 rounded border text-sm font-medium transition-colors">보통</button>
+                        <button id="font-large" class="px-3 py-1 rounded border text-sm font-medium transition-colors">크게</button>
+                    </div>
+                </div>
+                <a href="account-settings.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-user text-gray-500 w-6"></i>
+                        <span class="ml-3">개인 정보 관리</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+                <a href="account-verification.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-gray-500 w-6"></i>
+                        <span class="ml-3">계정 인증</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-green-500 text-sm mr-2">인증됨</span>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                </a>
+                <a href="change-password.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-lock text-gray-500 w-6"></i>
+                        <span class="ml-3">비밀번호 변경</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- 설정 섹션: 알림 설정 -->
+        <div class="mt-4">
+            <div class="bg-gray-100 px-5 py-2">
+                <h3 class="text-sm font-medium text-gray-500">알림 설정</h3>
+            </div>
+            <div class="bg-white">
+                <div class="flex items-center justify-between p-4 border-b border-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-bell text-gray-500 w-6"></i>
+                        <span class="ml-3">푸시 알림</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <input type="checkbox" value="" class="sr-only peer" checked>
+                        <!-- <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div> -->
+                    </label>
+                </div>
+                <a href="notification-settings.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-sliders-h text-gray-500 w-6"></i>
+                        <span class="ml-3">알림 상세 설정</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- 설정 섹션: 프라이버시 및 보안 -->
+        <div class="mt-4">
+            <div class="bg-gray-100 px-5 py-2">
+                <h3 class="text-sm font-medium text-gray-500">프라이버시 및 보안</h3>
+            </div>
+            <div class="bg-white">
+                <a href="privacy-settings.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-eye-slash text-gray-500 w-6"></i>
+                        <span class="ml-3">프라이버시 설정</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+                <a href="blocked-users.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-ban text-gray-500 w-6"></i>
+                        <span class="ml-3">차단한 사용자</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+                <a href="avoid-contacts.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-slash text-gray-500 w-6"></i>
+                        <span class="ml-3">아는 사람 만나지 않기</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- 설정 섹션: 지원 및 정보 -->
+        <div class="mt-4 mb-8">
+            <div class="bg-gray-100 px-5 py-2">
+                <h3 class="text-sm font-medium text-gray-500">지원 및 정보</h3>
+            </div>
+            <div class="bg-white">
+                <a href="help-center.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-headset text-gray-500 w-6"></i>
+                        <span class="ml-3">고객 센터</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+                <a href="terms-of-service.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-file-alt text-gray-500 w-6"></i>
+                        <span class="ml-3">서비스 이용약관</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+                <a href="privacy-policy.html" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-shield-alt text-gray-500 w-6"></i>
+                        <span class="ml-3">개인정보처리방침</span>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </a>
+                <div class="flex items-center justify-between p-4 border-b border-gray-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-code text-gray-500 w-6"></i>
+                        <span class="ml-3">앱 버전</span>
+                    </div>
+                    <span class="text-gray-500 text-sm">1.0.0</span>
+                </div>
+                <div id="btn-logout" class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <div class="flex items-center">
+                        <i class="fas fa-sign-out-alt text-red-500 w-6"></i>
+                        <span class="ml-3 text-red-500">로그아웃</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 로그아웃 확인 모달 (초기에는 숨김) -->
+    <div id="logout-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl w-4/5 max-w-md">
+            <div class="p-6">
+                <h3 class="font-bold text-lg text-center mb-4">로그아웃</h3>
+                <p class="text-center text-gray-600 mb-6">정말 로그아웃 하시겠습니까?</p>
+                <div class="flex space-x-4">
+                    <button id="btn-cancel-logout" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium flex-1 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">취소</button>
+                    <button id="btn-confirm-logout" class="bg-red-500 text-white px-6 py-3 rounded-lg font-medium flex-1 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">로그아웃</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 로그아웃 모달 제어
+        const logoutModal = document.getElementById('logout-modal');
+        const btnLogout = document.getElementById('btn-logout');
+        const btnCancelLogout = document.getElementById('btn-cancel-logout');
+        const btnConfirmLogout = document.getElementById('btn-confirm-logout');
+        
+        btnLogout.addEventListener('click', function() {
+            logoutModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        btnCancelLogout.addEventListener('click', function() {
+            logoutModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        
+        btnConfirmLogout.addEventListener('click', function() {
+            // 로그아웃 처리 (데모에서는 로그인 페이지로 이동)
+            window.location.href = '../auth/login.html';
+        });
+
+        // 폰트 크기 설정 기능
+        const fontSizeOptions = {
+            small: '14px',
+            medium: '16px',
+            large: '18px'
+        };
+        const fontSmallBtn = document.getElementById('font-small');
+        const fontMediumBtn = document.getElementById('font-medium');
+        const fontLargeBtn = document.getElementById('font-large');
+        const htmlTag = document.documentElement;
+        // localStorage에서 폰트 크기 불러오기
+        function applyFontSize(sizeKey) {
+            htmlTag.style.fontSize = fontSizeOptions[sizeKey];
+            // 버튼 스타일 업데이트
+            [fontSmallBtn, fontMediumBtn, fontLargeBtn].forEach(btn => btn.classList.remove('bg-primary', 'text-white', 'border-primary'));
+            if (sizeKey === 'small') fontSmallBtn.classList.add('bg-primary', 'text-white', 'border-primary');
+            if (sizeKey === 'medium') fontMediumBtn.classList.add('bg-primary', 'text-white', 'border-primary');
+            if (sizeKey === 'large') fontLargeBtn.classList.add('bg-primary', 'text-white', 'border-primary');
+        }
+        function setFontSize(sizeKey) {
+            localStorage.setItem('themeFontSize', sizeKey);
+            applyFontSize(sizeKey);
+        }
+        fontSmallBtn.addEventListener('click', () => setFontSize('small'));
+        fontMediumBtn.addEventListener('click', () => setFontSize('medium'));
+        fontLargeBtn.addEventListener('click', () => setFontSize('large'));
+        // 페이지 로드 시 적용
+        const savedFontSize = localStorage.getItem('themeFontSize') || 'medium';
+        applyFontSize(savedFontSize);
+    </script>
+    
+    <!-- 하단 네비게이션 컴포넌트 스크립트 -->
+    <script src="../components/bottom-nav.js"></script>
+</body>
+</html> 

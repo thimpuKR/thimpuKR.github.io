@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 6각형 배경 -->
+  <polygon points="100,10 170,50 170,150 100,190 30,150 30,50" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="4" />
+  
+  <!-- 안쪽 6각형 강조 -->
+  <polygon points="100,30 155,60 155,140 100,170 45,140 45,60" fill="#7b1fa2" stroke="none" />
+  
+  <!-- 리본 배너 -->
+  <g transform="translate(55, 75)">
+    <rect x="0" y="0" width="90" height="25" fill="#9c27b0" rx="3" ry="3" />
+    <polygon points="0,25 15,35 30,25" fill="#9c27b0" />
+    <polygon points="90,25 75,35 60,25" fill="#9c27b0" />
+    <text x="45" y="17" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">CERTIFIED</text>
+  </g>
+  
+  <!-- 타이틀 텍스트 -->
+  <text x="100" y="65" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">깊이 있는 나</text>
+  
+  <!-- 사람 아이콘과 생각 -->
+  <g transform="translate(85, 100)">
+    <circle cx="15" cy="10" r="10" fill="white" /> <!-- 머리 -->
+    <path d="M15,20 L15,35 M5,25 L25,25 M15,35 L7,50 M15,35 L23,50" stroke="white" stroke-width="3" fill="none" /> <!-- 몸통 -->
+    <circle cx="28" cy="5" r="5" fill="white" /> <!-- 생각 버블 -->
+    <circle cx="34" cy="0" r="3" fill="white" /> <!-- 생각 버블 -->
+  </g>
+</svg> 

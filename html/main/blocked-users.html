@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차단한 사용자 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#3A5A40', light: '#4F6F52' },
+                        secondary: { DEFAULT: '#F5EBE0', dark: '#EADBC8' },
+                        accent: { DEFAULT: '#FFDAB9' },
+                        gold: { DEFAULT: '#B08D57' }
+                    },
+                    fontFamily: { sans: ['Pretendard', 'Noto Sans KR', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; color: #2F2F2F; }
+        html { font-size: 16px; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" class="pb-20">
+        <header class="bg-white p-4 flex items-center shadow-sm">
+            <a href="settings.html" class="mr-3 text-gray-700 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <h1 class="text-xl font-bold">차단한 사용자</h1>
+        </header>
+        <main class="container mx-auto px-4 py-6 max-w-lg">
+            <!-- 이 곳에 차단한 사용자 목록 콘텐츠를 추가하세요. -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-lg font-bold mb-4">차단한 사용자 목록</h2>
+                <ul class="divide-y divide-gray-100">
+                    <li class="flex items-center justify-between py-3">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/seed/blockeduser1/50/50" alt="프로필 사진" class="w-10 h-10 rounded-full object-cover mr-3">
+                            <span class="font-medium text-gray-900">차단된 사용자 A</span>
+                        </div>
+                        <button class="text-red-600 text-sm">차단 해제</button>
+                    </li>
+                     <li class="flex items-center justify-between py-3">
+                        <div class="flex items-center">
+                            <img src="https://picsum.photos/seed/blockeduser2/50/50" alt="프로필 사진" class="w-10 h-10 rounded-full object-cover mr-3">
+                            <span class="font-medium text-gray-900">차단된 사용자 B</span>
+                        </div>
+                        <button class="text-red-600 text-sm">차단 해제</button>
+                    </li>
+                    <!-- 더 많은 차단 사용자 추가 -->
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="../components/bottom-nav.js"></script>
+</body>
+</html> 

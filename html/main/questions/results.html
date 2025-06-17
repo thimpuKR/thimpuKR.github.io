@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문지 결과 - 성연</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .header-icon {
+            @apply w-10 h-10 flex items-center justify-center rounded-full;
+        }
+        .touchable {
+            @apply cursor-pointer transition-opacity hover:opacity-70 active:opacity-50;
+        }
+         .result-badge {
+             @apply bg-primary text-white text-2xl font-bold rounded-full w-20 h-20 flex items-center justify-center;
+         }
+          .compatible-type {
+             @apply bg-accent text-primary px-4 py-2 rounded-full text-sm;
+         }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app">
+        <!-- 헤더 -->
+        <header class="bg-white p-5 flex justify-between items-center shadow-sm sticky top-0 z-20">
+            <div class="flex items-center">
+                <button onclick="history.back();" class="header-icon text-gray-600 mr-3 touchable">
+                     <i class="fas fa-arrow-left text-xl"></i>
+                </button>
+                <h1 class="text-xl font-bold">심층 질문지 결과</h1>
+            </div>
+        </header>
+
+        <!-- 컨텐츠 영역 -->
+        <div class="px-5 py-8 max-w-3xl mx-auto">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6 text-center">
+                <div class="flex flex-col items-center justify-center mb-6">
+                    <div class="result-badge mb-4">
+                        ISFP <!-- 실제 결과 값으로 교체 필요 -->
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">모험가형</h2> <!-- 실제 결과 설명으로 교체 필요 -->
+                    <p class="text-gray-600 max-w-md">균형 잡힌 내향적 성향과 창의적인 문제 해결 능력을 가진 유형</p> <!-- 실제 결과 상세 설명으로 교체 필요 -->
+                </div>
+
+                <div class="border-t border-gray-200 pt-6 mt-6 text-left">
+                    <h3 class="font-semibold text-gray-800 mb-3">나와 잘 맞는 유형</h3>
+                    <div class="flex flex-wrap gap-2">
+                         <span class="compatible-type">ENFJ (주도자형)</span> <!-- 실제 잘 맞는 유형 목록으로 교체 필요 -->
+                         <span class="compatible-type">INTJ (전략가형)</span>
+                        <!-- 더 많은 잘 맞는 유형 항목 추가 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 추가 분석 결과나 설명 등을 여기에 추가할 수 있습니다. -->
+        </div>
+    </div>
+</body>
+</html> 

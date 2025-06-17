@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" class="flex flex-col h-screen">
+        <!-- 헤더 -->
+        <header class="bg-white p-4 flex justify-between items-center shadow-sm">
+            <div class="flex items-center">
+                <button onclick="history.back();" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 mr-3 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </button>
+                <div class="flex items-center">
+                    <img src="https://picsum.photos/seed/chat1/100/100" alt="프로필 사진" class="w-10 h-10 rounded-full object-cover mr-3">
+                    <div>
+                        <h1 class="font-bold">지현</h1>
+                        <span class="text-xs text-green-500">온라인</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <button class="text-gray-600 mr-4 touchable">
+                    <i class="fas fa-phone text-xl"></i>
+                </button>
+                <button id="btn-menu" class="text-gray-600 touchable">
+                    <i class="fas fa-ellipsis-v text-xl"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- 채팅 내용 -->
+        <main class="flex-1 overflow-y-auto p-4">
+            <!-- 날짜 구분선 -->
+            <div class="flex justify-center mb-6">
+                <span class="bg-gray-200 text-gray-600 text-xs px-3 py-1 rounded-full">오늘</span>
+            </div>
+            
+            <!-- 받은 메시지 -->
+            <div class="flex mb-4">
+                <img src="https://picsum.photos/seed/chat1/100/100" alt="프로필 사진" class="w-8 h-8 rounded-full object-cover mr-2 self-end">
+                <div>
+                    <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-gray-200 text-gray-800 rounded-tl-none">
+                        <p>안녕하세요! 프로필을 보고 연락드립니다. 취미가 비슷해서 이야기 나눠보고 싶어요.</p>
+                    </div>
+                    <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-gray-200 text-gray-800 rounded-tl-none">
+                        <p>저는 주로 여행과 영화 감상을 좋아하는데, 특히 여행은 혼자 다니는 걸 좋아해요. 최근에는 제주도에 다녀왔어요.</p>
+                    </div>
+                    <span class="text-xs text-gray-500 ml-2">14:23</span>
+                </div>
+            </div>
+            
+            <!-- 보낸 메시지 -->
+            <div class="flex flex-row-reverse mb-4">
+                <div>
+                    <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-primary text-white ml-auto rounded-br-none">
+                        <p>안녕하세요, 반가워요! 저도 여행 좋아합니다. 제주도는 정말 좋죠. 저는 최근에 강원도 속초에 다녀왔어요.</p>
+                    </div>
+                    <span class="text-xs text-gray-500 mr-2">14:25</span>
+                </div>
+            </div>
+            
+            <!-- 받은 메시지 -->
+            <div class="flex mb-4">
+                <img src="https://picsum.photos/seed/chat1/100/100" alt="프로필 사진" class="w-8 h-8 rounded-full object-cover mr-2 self-end">
+                <div>
+                    <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-gray-200 text-gray-800 rounded-tl-none">
+                        <p>속초도 좋죠! 저도 작년에 다녀왔어요. 해변가 걷는 것도 좋고 맛있는 음식도 많고.</p>
+                    </div>
+                    <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-gray-200 text-gray-800 rounded-tl-none">
+                        <p>혹시 좋아하는 영화 장르가 있으신가요?</p>
+                    </div>
+                    <span class="text-xs text-gray-500 ml-2">14:30</span>
+                </div>
+            </div>
+            
+            <!-- 보낸 메시지 -->
+            <div class="flex flex-row-reverse mb-4">
+                <div>
+                    <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-primary text-white ml-auto rounded-br-none">
+                        <p>저는 SF나 미스터리, 스릴러 장르를 좋아해요. 특히 인셉션, 인터스텔라 같은 크리스토퍼 놀란 감독의 영화를 좋아합니다.</p>
+                    </div>
+                    <span class="text-xs text-gray-500 mr-2">14:32</span>
+                </div>
+            </div>
+            
+            <!-- 받은 메시지 -->
+            <div class="flex mb-4">
+                <img src="https://picsum.photos/seed/chat1/100/100" alt="프로필 사진" class="w-8 h-8 rounded-full object-cover mr-2 self-end">
+                <div>
+                    <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-gray-200 text-gray-800 rounded-tl-none">
+                        <p>저도 놀란 감독 영화 좋아해요! 인셉션은 정말 대단한 영화죠. 테넷도 봤는데 어렵지만 재미있었어요.</p>
+                    </div>
+                    <span class="text-xs text-gray-500 ml-2">14:38</span>
+                </div>
+            </div>
+            
+            <!-- 타이핑 중 표시 -->
+            <div class="flex mb-4">
+                <img src="https://picsum.photos/seed/chat1/100/100" alt="프로필 사진" class="w-8 h-8 rounded-full object-cover mr-2 self-end">
+                <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-gray-200 text-gray-800 rounded-tl-none">
+                    <div class="flex space-x-1">
+                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- 메시지 입력 영역 -->
+        <div class="bg-white p-4 border-t border-gray-200">
+            <div class="flex items-center space-x-3">
+                <button class="text-gray-500 hover:text-primary touchable">
+                    <i class="fas fa-plus text-xl"></i>
+                </button>
+                <input type="text" placeholder="메시지 입력..." class="flex-grow px-4 py-2 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                <button class="bg-primary text-white px-6 py-2 rounded-lg font-medium">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 메뉴 모달 (초기에는 숨김) -->
+        <div id="menu-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+            <div class="bg-white rounded-xl w-4/5 max-w-md">
+                <div class="p-4 border-b border-gray-100">
+                    <h3 class="font-bold text-lg text-center">채팅 옵션</h3>
+                </div>
+                <div class="p-4">
+                    <div class="space-y-4">
+                        <button class="flex items-center w-full py-2 touchable" onclick="window.location.href='profile-view.html'">
+                            <i class="far fa-user-circle w-8 text-lg text-gray-500"></i>
+                            <span>프로필 보기</span>
+                        </button>
+                        <button class="flex items-center w-full py-2 touchable">
+                            <i class="fas fa-image w-8 text-lg text-gray-500"></i>
+                            <span>사진 및 미디어 보기</span>
+                        </button>
+                        <button class="flex items-center w-full py-2 touchable">
+                            <i class="far fa-bell-slash w-8 text-lg text-gray-500"></i>
+                            <span>알림 끄기</span>
+                        </button>
+                        <button class="flex items-center w-full py-2 touchable">
+                            <i class="fas fa-ban w-8 text-lg text-red-500"></i>
+                            <span class="text-red-500">차단하기</span>
+                        </button>
+                        <button class="flex items-center w-full py-2 touchable">
+                            <i class="far fa-flag w-8 text-lg text-red-500"></i>
+                            <span class="text-red-500">신고하기</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-4 border-t border-gray-100">
+                    <button id="btn-close-menu" class="btn-secondary w-full touchable">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 메뉴 모달 제어
+        const menuModal = document.getElementById('menu-modal');
+        const btnMenu = document.getElementById('btn-menu');
+        const btnCloseMenu = document.getElementById('btn-close-menu');
+        
+        btnMenu.addEventListener('click', function() {
+            menuModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        btnCloseMenu.addEventListener('click', function() {
+            menuModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        
+        // 메시지 전송 기능
+        const messageInput = document.querySelector('input[type="text"]');
+        const sendButton = document.querySelector('.bg-primary');
+        
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                // 현재 시간 가져오기
+                const now = new Date();
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                const timeString = `${hours}:${minutes}`;
+                
+                // 새 메시지 엘리먼트 생성
+                const chatContent = document.createElement('div');
+                chatContent.classList.add('flex', 'flex-row-reverse', 'mb-4');
+                
+                chatContent.innerHTML = `
+                    <div>
+                        <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-primary text-white ml-auto rounded-br-none">
+                            <p>${message}</p>
+                        </div>
+                        <div class="flex justify-end">
+                            <span class="text-xs text-gray-500 mr-2">${timeString}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // 타이핑 중 표시 이전에 삽입
+                const typingIndicator = document.querySelector('.animate-pulse').closest('.flex.mb-4');
+                document.querySelector('main').insertBefore(chatContent, typingIndicator);
+                
+                // 입력 필드 비우기
+                messageInput.value = '';
+                
+                // 스크롤을 최하단으로 이동
+                const main = document.querySelector('main');
+                main.scrollTop = main.scrollHeight;
+                
+                // 데모용: 자동 응답 (2초 후)
+                setTimeout(() => {
+                    // 타이핑 중 표시 숨기기
+                    typingIndicator.style.display = 'none';
+                    
+                    // 응답 메시지 추가
+                    const responseContent = document.createElement('div');
+                    responseContent.classList.add('flex', 'mb-4');
+                    
+                    responseContent.innerHTML = `
+                        <img src="https://picsum.photos/seed/chat1/100/100" alt="프로필 사진" class="w-8 h-8 rounded-full object-cover mr-2 self-end">
+                        <div>
+                            <div class="max-w-xs px-4 py-3 rounded-xl shadow-sm break-words bg-gray-200 text-gray-800 rounded-tl-none">
+                                <p>${getAutoResponse(message)}</p>
+                            </div>
+                            <span class="text-xs text-gray-500 ml-2">${timeString}</span>
+                        </div>
+                    `;
+                    
+                    document.querySelector('main').appendChild(responseContent);
+                    
+                    // 타이핑 중 표시 복원
+                    typingIndicator.style.display = 'flex';
+                    
+                    // 스크롤을 최하단으로 이동
+                    main.scrollTop = main.scrollHeight;
+                }, 2000);
+            }
+        }
+        
+        // 간단한 자동 응답 생성 함수
+        function getAutoResponse(message) {
+            const responses = [
+                "네, 맞아요! 정말 흥미로운 주제네요.",
+                "그렇군요. 더 자세히 말씀해주실 수 있나요?",
+                "저도 그렇게 생각해요. 공감합니다!",
+                "흥미롭네요. 그런 관점은 생각해보지 않았어요.",
+                "좋은 의견이에요. 저는 이렇게 생각하고 있었어요.",
+                "재미있는 이야기네요. 계속 들려주세요!",
+                "맞아요, 저도 비슷한 경험이 있어요.",
+                "정말요? 그건 처음 알았네요!",
+                "그런 취향이 있으셨군요. 저도 비슷해요."
+            ];
+            
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+        
+        // 페이지 로드 시 스크롤을 최하단으로 이동
+        window.addEventListener('load', function() {
+            const main = document.querySelector('main');
+            main.scrollTop = main.scrollHeight;
+        });
+    </script>
+    
+    <!-- 하단 네비게이션 컴포넌트 스크립트 -->
+    <script src="../components/bottom-nav.js"></script>
+</body>
+</html> 

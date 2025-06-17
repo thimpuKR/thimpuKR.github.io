@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심층 질문지 결과 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" class="max-w-2xl mx-auto p-6 min-h-screen flex flex-col">
+        <!-- 헤더 -->
+        <div class="text-center mb-8">
+            <img src="https://picsum.photos/seed/synlogo/100/100" alt="성연 로고" class="w-20 h-20 mx-auto rounded-full mb-4 object-cover">
+            <h1 class="text-2xl font-bold mb-2">심층 질문지 분석 결과</h1>
+            <p class="text-gray-600">당신의 답변을 바탕으로 성격 및 인연 유형을 분석했습니다.</p>
+        </div>
+        
+        <!-- 진행 상태 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-medium">프로필 완성도</span>
+                <span class="text-primary font-medium">60%</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-primary rounded-full" style="width: 60%;"></div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">더 많은 질문에 답변할수록 더 정확한 매칭 결과를 받을 수 있습니다.</p>
+        </div>
+        
+        <!-- 핵심 결과 요약 -->
+        <div class="bg-white rounded-xl shadow-md p-6 my-4">
+            <h2 class="text-xl font-bold mb-4">핵심 성격 요약</h2>
+            <div class="flex items-center mb-6">
+                <div class="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold">
+                    ISFP
+                </div>
+                <div class="ml-4">
+                    <h3 class="font-bold text-lg">모험가형</h3>
+                    <p class="text-gray-600">균형 잡힌 내향적 성향과 창의적인 문제 해결 능력을 가진 당신은 '모험가형' 유형입니다.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-4 mt-4">
+                <h3 class="font-bold mb-2">주요 특성</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                        <span>조용하지만 따뜻한 마음을 가지고 있으며, 1:1 관계에서 깊은 유대감을 형성합니다.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                        <span>갈등을 피하는 경향이 있으나, 중요한 가치에 대해서는 강한 신념을 보입니다.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                        <span>예술적 감각과 미적 감수성이 뛰어나며, 실용적인 문제 해결 능력을 갖추고 있습니다.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 섹션별 분석 -->
+        <div class="bg-white rounded-xl shadow-md p-6 my-4">
+            <h2 class="text-xl font-bold mb-4">상세 분석</h2>
+            
+            <!-- 섹션 1: 기본 성향 및 생활 -->
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold">1. 기본 성향 및 생활</h3>
+                    <span class="text-sm text-primary">3/8 문항 완료</span>
+                </div>
+                <p>당신은 <span class="font-medium">약간 내향적인 성향</span>으로, 조용한 환경에서 에너지를 얻지만 필요할 때는 사교적인 모습도 보입니다. 여가 시간에는 <span class="font-medium">취미 활동</span>을 즐기며, 식생활은 <span class="font-medium">건강과 맛 사이의 균형</span>을 중요시하는 것으로 보입니다.</p>
+            </div>
+            
+            <!-- 섹션 2: 관계 및 소통 방식 -->
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold">2. 관계 및 소통 방식</h3>
+                    <span class="text-sm text-primary">3/8 문항 완료</span>
+                </div>
+                <p>인간관계에서는 <span class="font-medium">신뢰와 진실성</span>을 가장 중요하게 생각하며, 갈등 상황에서는 <span class="font-medium">타협점을 찾아 해결</span>하는 경향이 있습니다. 친밀한 관계에서는 <span class="font-medium">행동으로 애정을 표현</span>하는 것을 선호합니다.</p>
+            </div>
+        </div>
+        
+        <!-- 추천 연결 유형 -->
+        <div class="bg-white rounded-xl shadow-md p-6 my-4">
+            <h2 class="text-xl font-bold mb-4">당신에게 잘 맞는 유형</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 추천 유형 1 -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-primary font-bold">
+                            ENFJ
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold">주도자형</h3>
+                            <p class="text-sm text-gray-600">상호보완적 매칭</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">당신의 내향적 성향을 이해하고 존중하면서도, 사회적 상황에서 자연스럽게 이끌어주는 유형입니다.</p>
+                </div>
+                
+                <!-- 추천 유형 2 -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-primary font-bold">
+                            INTJ
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="font-bold">전략가형</h3>
+                            <p class="text-sm text-gray-600">깊은 대화 매칭</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">깊이 있는 대화와 함께 성장할 수 있는 관계를 형성할 수 있으며, 서로의 내향적 에너지를 존중합니다.</p>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-sm text-gray-600">
+                <p>* 이는 현재까지의 제한된 정보를 바탕으로 한 초기 분석 결과입니다. 더 많은 질문에 답변하면 더 정확한 결과를 얻을 수 있습니다.</p>
+            </div>
+        </div>
+        
+        <!-- 추가 액션 버튼 -->
+        <div class="flex flex-col gap-4 mt-8">
+            <a href="section1.html" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium text-center">
+                추가 질문에 답변하기
+            </a>
+            <a href="../main/dashboard.html" class="bg-primary text-white px-6 py-3 rounded-lg font-medium text-center">
+                메인 대시보드로 이동
+            </a>
+        </div>
+        
+        <!-- 공유 버튼 -->
+        <div class="mt-8 text-center">
+            <p class="text-sm text-gray-500 mb-3">결과 공유하기</p>
+            <div class="flex justify-center gap-4">
+                <button class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center">
+                    <i class="fas fa-comment"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-yellow-400 text-white flex items-center justify-center">
+                    <i class="fas fa-link"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 결과 데이터를 동적으로 구성
+        document.addEventListener('DOMContentLoaded', function() {
+            // 섹션1 데이터 불러오기
+            const section1Answers = localStorage.getItem('section1_answers');
+            // 섹션2 데이터 불러오기
+            const section2Answers = localStorage.getItem('section2_answers');
+            
+            // 데이터가 있으면 결과 업데이트
+            // 이 예제에서는 간단하게 표시만 하고 실제 계산은 하지 않음
+            
+            // 완성도 계산 (실제로는 더 복잡한 로직이 필요)
+            let completedSections = 0;
+            if (section1Answers) completedSections++;
+            if (section2Answers) completedSections++;
+            
+            const totalSections = 5; // 가정
+            const completionPercentage = Math.round((completedSections / totalSections) * 100);
+            
+            // 완성도 UI 업데이트
+            document.querySelector('.progress-value').style.width = `${completionPercentage}%`;
+            document.querySelector('.text-primary.font-medium').textContent = `${completionPercentage}%`;
+        });
+    </script>
+</body>
+</html> 

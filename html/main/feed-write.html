@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피드 작성</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', 'Noto Sans KR', sans-serif; }
+    </style>
+        <!-- 커스텀 스타일 -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: { DEFAULT: '#3A5A40', light: '#4F6F52' },
+                            secondary: { DEFAULT: '#F5EBE0', dark: '#EADBC8' },
+                            accent: { DEFAULT: '#FFDAB9' },
+                            gold: { DEFAULT: '#B08D57' }
+                        },
+                        fontFamily: { sans: ['Pretendard', 'Noto Sans KR', 'sans-serif'] }
+                    }
+                }
+            }
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="max-w-lg mx-auto pb-20">
+        <!-- 헤더 -->
+        <header class="bg-white p-4 flex items-center shadow-sm sticky top-0 z-10">
+            <a href="feed.html" class="mr-3 text-gray-700 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <h1 class="text-xl font-bold">피드 작성</h1>
+        </header>
+
+        <!-- 작성 폼 -->
+        <form class="bg-white p-6 mt-4 space-y-5">
+            <div>
+                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">카테고리</label>
+                <select id="category" class="w-full border rounded px-3 py-2">
+                    <option>공지</option>
+                    <option>후기</option>
+                    <option>꿀팁</option>
+                    <option>Q&A</option>
+                    <option>이벤트</option>
+                    <option>설문</option>
+                </select>
+            </div>
+            <!-- 설문 입력 폼 (기본 숨김) -->
+            <div id="survey-section" class="hidden bg-gray-50 border rounded p-4 mb-2">
+                <label for="survey-question" class="block text-sm font-medium text-gray-700 mb-1">설문 질문</label>
+                <input type="text" id="survey-question" class="w-full border rounded px-3 py-2 mb-2" placeholder="설문 질문을 입력하세요">
+                <div id="survey-options" class="space-y-2 mb-2">
+                    <div class="flex items-center">
+                        <input type="text" class="flex-1 border rounded px-3 py-2" placeholder="보기 1">
+                    </div>
+                    <div class="flex items-center">
+                        <input type="text" class="flex-1 border rounded px-3 py-2" placeholder="보기 2">
+                    </div>
+                </div>
+                <button type="button" id="add-option" class="text-xs text-primary underline">+ 보기 추가</button>
+            </div>
+            <div>
+                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">제목</label>
+                <input type="text" id="title" class="w-full border rounded px-3 py-2" placeholder="제목을 입력하세요">
+            </div>
+            <div>
+                <label for="content" class="block text-sm font-medium text-gray-700 mb-1">본문</label>
+                <div id="editorjs" class="w-full border rounded px-3 py-2 bg-white" style="min-height: 180px;"></div>
+            </div>
+            <div>
+                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">이미지 첨부 (선택)</label>
+                <input type="file" id="image" accept="image/*" class="hidden">
+                <label for="image" class="flex items-center justify-center w-[100px] h-[100px] border border-dashed rounded-[4px] cursor-pointer bg-gray-100 hover:bg-gray-200 transition">
+                    <i class="fas fa-plus text-3xl text-gray-400"></i>
+                </label>
+                <!-- 미리보기 이미지가 필요하다면 JS로 추가 구현 가능 -->
+            </div>
+            <div class="flex items-center">
+                <input type="checkbox" id="pin" class="mr-2">
+                <label for="pin" class="text-sm text-gray-700">최상단에 고정(흰색)</label>
+            </div>
+            <div class="flex space-x-2 mt-6">
+                <button type="submit" class="flex-1 bg-primary text-white py-3 rounded font-bold transition-opacity hover:opacity-80 active:opacity-60">등록</button>
+                <a href="feed.html" class="flex-1 bg-gray-200 text-gray-700 py-3 rounded font-bold text-center transition-opacity hover:opacity-80 active:opacity-60">취소</a>
+            </div>
+        </form>
+    </div>
+    <script>
+    // 설문 카테고리 선택 시 설문 입력 폼 표시
+    document.getElementById('category').addEventListener('change', function() {
+        const surveySection = document.getElementById('survey-section');
+        if (this.value === '설문') {
+            surveySection.classList.remove('hidden');
+        } else {
+            surveySection.classList.add('hidden');
+        }
+    });
+    // 보기 추가 기능
+    document.getElementById('add-option').addEventListener('click', function() {
+        const options = document.getElementById('survey-options');
+        const count = options.children.length + 1;
+        const div = document.createElement('div');
+        div.className = 'flex items-center';
+        div.innerHTML = `<input type="text" class="flex-1 border rounded px-3 py-2" placeholder="보기 ${count}">`;
+        options.appendChild(div);
+    });
+
+    // Editor.js 초기화
+    const editor = new EditorJS({
+        holder: 'editorjs',
+        placeholder: '본문을 입력하세요',
+        tools: {
+            header: Header,
+            // list: List,
+            image: ImageTool,
+            quote: Quote,
+            // code: CodeTool,
+            table: Table,
+            // marker: Marker,
+            // inlineCode: InlineCode,
+            // delimiter: Delimiter,
+            // linkTool: LinkTool
+        },
+    });
+    </script>
+    <script src="../components/bottom-nav.js"></script>
+</body>
+</html> 

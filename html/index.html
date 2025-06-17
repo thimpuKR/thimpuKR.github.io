@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성연 - 진정한 당신을 이해하는 인연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40', // 딥 그린
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0', // 웜 베이지
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9', // 소프트 코랄
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57', // 골드 옐로우
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        /* 접근성을 위한 텍스트 크기 설정 */
+        html {
+            font-size: 16px;
+        }
+        
+        /* 반응형 폰트 크기 */
+        h1 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.125rem; /* 18px */
+            font-weight: 500;
+        }
+        /* background: url('assets/images/splish.jpg') center center / cover no-repeat fixed; */
+    </style>
+</head>
+<body class="min-h-screen" style="position: relative;">
+    <div style="position:fixed; inset:0; background:rgba(255,255,255,0.08); z-index:0;"></div>
+    <div id="app" class="max-w-md mx-auto min-h-screen flex flex-col justify-between items-center relative z-10 px-6 pb-10">
+      <div class="w-full flex flex-col items-center mt-36">
+        <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center mb-4 shadow-lg">
+          <span class="text-white text-3xl font-bold drop-shadow">성연</span>
+        </div>
+        <p class="text-center text-lg font-semibold text-primary drop-shadow" style="text-shadow:0 2px 8px rgba(0,0,0,0.15);">
+          진정한 당신을 이해하는 인연,<br>성연에서 시작하세요.
+        </p>
+      </div>
+      <div class="flex flex-col gap-4 w-full mb-8">
+        <div class="flex flex-col gap-4 w-full mb-8">
+            <a href="auth/signup.html" class="bg-primary text-white px-6 py-3 rounded-lg font-bold text-center shadow hover:bg-primary-light transition">회원가입</a>
+            <a href="auth/login.html" class="border-2 border-primary text-primary px-6 py-3 rounded-lg font-bold text-center bg-white/80 hover:bg-primary hover:text-white transition">로그인</a>
+        </div>
+        <div class="text-center text-gray-700 text-xs drop-shadow" style="text-shadow:0 2px 8px rgba(255,255,255,0.5); background:rgba(255,255,255,0.3); border-radius:8px; padding: 0.5rem 1rem;">
+            <p>© 2025 성연. All rights reserved.</p>
+        </div>
+        </div>
+    </div>
+  </body>
+  
+</html> 

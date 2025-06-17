@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상호 존중 약속 보드 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        /* 버튼 스타일 */
+        /* .btn-primary {\n            @apply bg-primary text-white px-6 py-3 rounded-lg font-medium;\n        }\n        \n        .btn-secondary {\n            @apply border border-primary text-primary px-6 py-3 rounded-lg font-medium;\n        }\n        \n        .btn-text {\n            @apply text-primary underline font-medium;\n        }\n        \n        /* 세션 카드 스타일 */\n        .value-card {\n            @apply bg-white rounded-xl shadow-sm overflow-hidden mb-6 p-6;\n        }\n        \n        /* 터치 가능한 요소 스타일 */\n        .touchable {\n            @apply cursor-pointer transition-opacity hover:opacity-70 active:opacity-50;\n        }\n\n        /* 체크박스 스타일 */\n        /* .pledge-checkbox {\n            @apply hidden;\n        }\n        \n        .pledge-checkbox + label {\n            @apply relative pl-8 flex items-center cursor-pointer;\n        }\n        \n        .pledge-checkbox + label:before {\n            content: '';\n            @apply absolute left-0 w-5 h-5 border-2 border-gray-300 rounded-md transition-colors;\n        }\n        \n        .pledge-checkbox:checked + label:before {\n            @apply bg-primary border-primary;\n        }\n        \n        .pledge-checkbox:checked + label:after {
+            content: '✓';\n            @apply absolute left-0 w-5 h-5 text-white flex items-center justify-center text-sm;\n        } */
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" class="max-w-md mx-auto p-6 min-h-screen flex flex-col">
+        <!-- 헤더 -->
+        <div class="flex justify-between items-center mb-6">
+            <a href="value-compass.html" class="text-gray-700 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <button id="btn-skip" class="text-gray-500 text-sm cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">건너뛰기</button>
+        </div>
+        
+        <!-- 메인 콘텐츠 -->
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold mb-2">상호 존중 약속 보드</h1>
+            <p class="text-gray-600">성연에서의 건강한 만남을 위한 약속입니다</p>
+        </div>
+        
+        <!-- 약속 보드 카드 -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6 p-6">
+            <div class="bg-secondary p-4 rounded-lg mb-5 text-center">
+                <h2 class="font-medium">성연은 진정한 인연을 만나기 위한 공간입니다</h2>
+                <p class="text-sm text-gray-600 mt-1">아래 약속에 동의하고 건강한 만남 문화를 함께 만들어 주세요.</p>
+            </div>
+            
+            <div class="space-y-5">
+                <div>
+                    <input type="checkbox" id="pledge-1" class="hidden">
+                    <label for="pledge-1" class="font-medium relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>진실된 내용으로 소통하겠습니다</span>
+                    </label>
+                    <p class="text-gray-600 text-sm mt-1 ml-8">허위 정보나 과장된 내용이 아닌, 진실된 정보를 바탕으로 소통합니다.</p>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="pledge-2" class="hidden">
+                    <label for="pledge-2" class="font-medium relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>상대방의 의사를 존중하겠습니다</span>
+                    </label>
+                    <p class="text-gray-600 text-sm mt-1 ml-8">원치 않는 만남이나 연락을 강요하지 않고, 상대방의 경계를 존중합니다.</p>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="pledge-3" class="hidden">
+                    <label for="pledge-3" class="font-medium relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>차별적 언행을 하지 않겠습니다</span>
+                    </label>
+                    <p class="text-gray-600 text-sm mt-1 ml-8">성별, 나이, 외모, 직업, 학력 등을 이유로 차별적인 언행을 하지 않습니다.</p>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="pledge-4" class="hidden">
+                    <label for="pledge-4" class="font-medium relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>부적절한 대화나 사진을 보내지 않겠습니다</span>
+                    </label>
+                    <p class="text-gray-600 text-sm mt-1 ml-8">상대방이 불편함을 느낄 수 있는 부적절한 내용을 전송하지 않습니다.</p>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="pledge-5" class="hidden">
+                    <label for="pledge-5" class="font-medium relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>개인정보를 안전하게 관리하겠습니다</span>
+                    </label>
+                    <p class="text-gray-600 text-sm mt-1 ml-8">상대방의 동의 없이 대화 내용이나 개인정보를 외부에 공유하지 않습니다.</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-gray-100">
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" id="pledge-all" class="mt-1">
+                    <div>
+                        <label for="pledge-all" class="font-bold cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">모든 약속에 동의합니다</label>
+                        <p class="text-gray-500 text-sm">위 약속을 위반할 경우 서비스 이용이 제한될 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 커스텀 약속 추가 -->
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden p-6">
+            <h2 class="text-lg font-bold mb-4">나만의 약속 추가하기</h2>
+            <p class="text-gray-600 text-sm mb-4">나에게 중요한 가치나 약속을 추가해 보세요. 이는 상대방이 내 프로필을 볼 때 참고할 수 있습니다.</p>
+            
+            <div class="space-y-3">
+                <div>
+                    <input type="checkbox" id="custom-1" class="hidden">
+                    <label for="custom-1" class="text-gray-600 relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>서로의 시간을 소중히 여기겠습니다</span>
+                    </label>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="custom-2" class="hidden">
+                    <label for="custom-2" class="text-gray-600 relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>대화할 때 집중하고 경청하겠습니다</span>
+                    </label>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="custom-3" class="hidden">
+                    <label for="custom-3" class="text-gray-600 relative pl-8 flex items-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <span>서로의 취향과 선택을 존중하겠습니다</span>
+                    </label>
+                </div>
+                
+                <div class="flex gap-2 mt-4">
+                    <input type="text" placeholder="나만의 약속 입력하기" class="border border-gray-300 rounded-lg p-3 flex-1">
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 버튼 영역 -->
+        <div class="flex flex-col gap-4 mt-8">
+            <button id="btn-confirm" class="bg-primary text-white px-6 py-3 rounded-lg font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50" disabled>약속 확인 완료</button>
+            <a href="../main/dashboard.html" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium text-center cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">다음에 하기</a>
+        </div>
+    </div>
+    
+    <script>
+        // 모든 체크박스 선택/해제
+        const pledgeAllCheckbox = document.getElementById('pledge-all');
+        const pledgeCheckboxes = document.querySelectorAll('.pledge-checkbox');
+        const btnConfirm = document.getElementById('btn-confirm');
+        
+        pledgeAllCheckbox.addEventListener('change', function() {
+            const isChecked = this.checked;
+            pledgeCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+            
+            // 확인 버튼 활성화/비활성화
+            btnConfirm.disabled = !isChecked;
+        });
+        
+        // 개별 체크박스 변경 이벤트
+        pledgeCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allChecked = Array.from(document.querySelectorAll('.pledge-checkbox')).slice(0, 5)
+                    .every(checkbox => checkbox.checked);
+                
+                pledgeAllCheckbox.checked = allChecked;
+                
+                // 필수 체크박스(1-5번) 모두 체크되었는지 확인
+                const requiredChecked = Array.from(document.querySelectorAll('.pledge-checkbox')).slice(0, 5)
+                    .every(checkbox => checkbox.checked);
+                
+                btnConfirm.disabled = !requiredChecked;
+            });
+        });
+        
+        // 건너뛰기 버튼
+        document.getElementById('btn-skip').addEventListener('click', function() {
+            if (confirm('약속 보드 설정을 건너뛰시겠습니까? 나중에 설정할 수 있습니다.')) {
+                window.location.href = '../main/dashboard.html';
+            }
+        });
+        
+        // 약속 확인 완료 버튼
+        document.getElementById('btn-confirm').addEventListener('click', function() {
+            // 데모에서는 로컬 스토리지에 저장
+            localStorage.setItem('pledge_completed', 'true');
+            alert('약속 보드 설정이 완료되었습니다.');
+            window.location.href = '../main/dashboard.html';
+        });
+    </script>
+    
+    <!-- 하단 네비게이션 컴포넌트 스크립트 -->
+    <!-- <script src="../components/bottom-nav.js"></script> -->
+</body>
+</html> 

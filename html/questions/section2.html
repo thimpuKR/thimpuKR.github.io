@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관계 및 소통 방식 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pretendard 폰트 CDN */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: #2F2F2F;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div id="app" class="max-w-md mx-auto p-6 min-h-screen flex flex-col">
+        <!-- 헤더 -->
+        <div class="flex justify-between items-center mb-6">
+            <a href="section1.html" class="text-gray-700">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <button id="btn-save-exit" class="text-gray-500 text-sm">저장 후 나가기</button>
+        </div>
+        
+        <!-- 섹션 제목 및 진행 상태 -->
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <h1 class="text-xl font-bold">2. 관계 및 소통 방식</h1>
+                <span id="question-count" class="text-sm text-gray-500">1/3 문항</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-primary rounded-full" style="width: calc(1 / 3 * 100%)"></div>
+            </div>
+        </div>
+        
+        <!-- 현재 질문 (Q1) -->
+        <div id="question-1" class="flex flex-col gap-6">
+            <div class="bg-secondary p-4 rounded-lg">
+                <h2 class="text-lg font-medium mb-2">Q1. 인간관계에서 중요하게 생각하는 가치는 무엇인가요?</h2>
+                <p class="text-gray-600 text-sm">가장 중요하게 생각하는 것을 선택해주세요.</p>
+            </div>
+            
+            <div class="space-y-3">
+                <div>
+                    <input type="radio" id="q1-1" name="q1" value="1" class="hidden">
+                    <label for="q1-1" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>신뢰와 진실성</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q1-2" name="q1" value="2" class="hidden">
+                    <label for="q1-2" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>지지와 공감</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q1-3" name="q1" value="3" class="hidden">
+                    <label for="q1-3" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>재미와 즐거움</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q1-4" name="q1" value="4" class="hidden">
+                    <label for="q1-4" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>성장과 발전</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q1-5" name="q1" value="5" class="hidden">
+                    <label for="q1-5" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>독립성과 자유</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-2 mt-2">
+                <label for="q1-comment" class="font-medium text-sm">보충 설명 (선택사항)</label>
+                <textarea id="q1-comment" class="border border-gray-300 rounded-lg p-3 h-24 resize-none" placeholder="인간관계에서 중요시하는 가치에 대해 더 알려주세요."></textarea>
+            </div>
+        </div>
+        
+        <!-- 현재 질문 (Q2, 초기에는 숨김) -->
+        <div id="question-2" class="flex flex-col gap-6 hidden">
+            <div class="bg-secondary p-4 rounded-lg">
+                <h2 class="text-lg font-medium mb-2">Q2. 갈등 상황에서 당신의 대처 방식은 어떠한가요?</h2>
+                <p class="text-gray-600 text-sm">가장 일반적인 당신의 대처 방식을 선택해주세요.</p>
+            </div>
+            
+            <div class="space-y-3">
+                <div>
+                    <input type="radio" id="q2-1" name="q2" value="1" class="hidden">
+                    <label for="q2-1" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>직접적으로 문제를 해결하려고 노력한다</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q2-2" name="q2" value="2" class="hidden">
+                    <label for="q2-2" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>타협점을 찾아 중간 지점에서 만나려고 한다</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q2-3" name="q2" value="3" class="hidden">
+                    <label for="q2-3" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>갈등을 피하고 상황이 나아지길 기다린다</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q2-4" name="q2" value="4" class="hidden">
+                    <label for="q2-4" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>상대방의 입장을 먼저 이해하려고 노력한다</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q2-5" name="q2" value="5" class="hidden">
+                    <label for="q2-5" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>제3자의 도움이나 상담을 통해 해결하려고 한다</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-2 mt-2">
+                <label for="q2-comment" class="font-medium text-sm">보충 설명 (선택사항)</label>
+                <textarea id="q2-comment" class="border border-gray-300 rounded-lg p-3 h-24 resize-none" placeholder="갈등 상황에서의 대처 방식에 대해 더 자세히 알려주세요."></textarea>
+            </div>
+        </div>
+        
+        <!-- 현재 질문 (Q3, 초기에는 숨김) -->
+        <div id="question-3" class="flex flex-col gap-6 hidden">
+            <div class="bg-secondary p-4 rounded-lg">
+                <h2 class="text-lg font-medium mb-2">Q3. 친밀한 관계에서 당신이 보여주는 애정 표현 방식은?</h2>
+                <p class="text-gray-600 text-sm">당신이 가장 자연스럽게 표현하는 방식을 선택해주세요.</p>
+            </div>
+            
+            <div class="space-y-3">
+                <div>
+                    <input type="radio" id="q3-1" name="q3" value="1" class="hidden">
+                    <label for="q3-1" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>언어적 표현 (말로 감정을 직접 표현하기)</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q3-2" name="q3" value="2" class="hidden">
+                    <label for="q3-2" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>신체적 접촉 (스킨십, 포옹 등)</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q3-3" name="q3" value="3" class="hidden">
+                    <label for="q3-3" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>선물이나 서비스 (선물 주기, 도움 주기)</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q3-4" name="q3" value="4" class="hidden">
+                    <label for="q3-4" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>함께하는 시간 (질 높은 시간 함께 보내기)</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="q3-5" name="q3" value="5" class="hidden">
+                    <label for="q3-5" class="border border-gray-300 rounded-lg p-3 flex items-center justify-center text-center cursor-pointer transition-colors block">
+                        <span>존중과 배려 (상대의 필요를 먼저 생각하기)</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="flex flex-col gap-2 mt-2">
+                <label for="q3-comment" class="font-medium text-sm">보충 설명 (선택사항)</label>
+                <textarea id="q3-comment" class="border border-gray-300 rounded-lg p-3 h-24 resize-none" placeholder="당신의 애정 표현 방식에 대해 더 자세히 알려주세요."></textarea>
+            </div>
+        </div>
+        
+        <!-- 네비게이션 버튼 -->
+        <div class="flex gap-4 mt-auto pt-6">
+            <button id="btn-prev" class="border border-primary text-primary px-6 py-3 rounded-lg font-medium flex-1" disabled>이전</button>
+            <button id="btn-next" class="bg-primary text-white px-6 py-3 rounded-lg font-medium flex-1">다음</button>
+        </div>
+    </div>
+    
+    <script>
+        // 현재 질문 번호
+        let currentQuestion = 1;
+        const totalQuestions = 3; // 실제로는 8이지만 데모를 위해 3개만 구현
+        
+        // 질문 데이터 저장 객체
+        const answers = {
+            q1: null,
+            q1_comment: '',
+            q2: null,
+            q2_comment: '',
+            q3: null,
+            q3_comment: ''
+        };
+        
+        // 다음 버튼 클릭 이벤트
+        document.getElementById('btn-next').addEventListener('click', function() {
+            // 현재 질문 응답 저장
+            saveCurrentAnswer();
+            
+            // 응답 확인 (필수)
+            if (answers[`q${currentQuestion}`] === null) {
+                alert('질문에 답변해주세요.');
+                return;
+            }
+            
+            // 질문 전환
+            if (currentQuestion < totalQuestions) {
+                document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+                currentQuestion++;
+                document.getElementById(`question-${currentQuestion}`).classList.remove('hidden');
+                
+                // 진행바 업데이트
+                updateProgressBar();
+                
+                // 이전 버튼 활성화
+                document.getElementById('btn-prev').disabled = false;
+                
+                // 마지막 질문인 경우 다음 버튼 텍스트 변경
+                if (currentQuestion === totalQuestions) {
+                    document.getElementById('btn-next').textContent = '다음 섹션으로';
+                }
+            } else {
+                // 다음 섹션으로 이동
+                window.location.href = 'section3.html';
+            }
+        });
+        
+        // 이전 버튼 클릭 이벤트
+        document.getElementById('btn-prev').addEventListener('click', function() {
+            // 현재 질문 응답 저장
+            saveCurrentAnswer();
+            
+            if (currentQuestion > 1) {
+                document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+                currentQuestion--;
+                document.getElementById(`question-${currentQuestion}`).classList.remove('hidden');
+                
+                // 진행바 업데이트
+                updateProgressBar();
+                
+                // 첫 번째 질문인 경우 이전 버튼 비활성화
+                if (currentQuestion === 1) {
+                    document.getElementById('btn-prev').disabled = true;
+                }
+                
+                // 다음 버튼 텍스트 원복
+                document.getElementById('btn-next').textContent = '다음';
+            }
+        });
+        
+        // 저장 후 나가기 버튼
+        document.getElementById('btn-save-exit').addEventListener('click', function() {
+            // 현재 질문 응답 저장
+            saveCurrentAnswer();
+            
+            if (confirm('지금까지의 답변을 저장하고 나가시겠습니까?')) {
+                // 데모를 위해 localStorage에 저장
+                localStorage.setItem('section2_answers', JSON.stringify(answers));
+                window.location.href = '../main/dashboard.html';
+            }
+        });
+        
+        // 현재 답변 저장 함수
+        function saveCurrentAnswer() {
+            const radioName = `q${currentQuestion}`;
+            const commentId = `q${currentQuestion}-comment`;
+            
+            // 라디오 버튼 값 저장
+            const selectedRadio = document.querySelector(`input[name="${radioName}"]:checked`);
+            if (selectedRadio) {
+                answers[radioName] = selectedRadio.value;
+            }
+            
+            // 코멘트 저장
+            const commentTextarea = document.getElementById(commentId);
+            if (commentTextarea) {
+                answers[`${radioName}_comment`] = commentTextarea.value;
+            }
+        }
+        
+        // 진행바 업데이트 함수
+        function updateProgressBar() {
+            const progressValue = (currentQuestion / 3) * 100; // 전체 3문항 기준
+            document.getElementById('progress-bar').style.width = `${progressValue}%`;
+            document.getElementById('question-count').textContent = `${currentQuestion}/3 문항`;
+        }
+        
+        // 이전에 저장된 답변 로드 (있을 경우)
+        const savedAnswers = localStorage.getItem('section2_answers');
+        if (savedAnswers) {
+            try {
+                const parsedAnswers = JSON.parse(savedAnswers);
+                Object.assign(answers, parsedAnswers);
+                
+                // 저장된 답변으로 UI 업데이트
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const radioValue = answers[`q${i}`];
+                    if (radioValue) {
+                        document.getElementById(`q${i}-${radioValue}`).checked = true;
+                    }
+                    
+                    const commentValue = answers[`q${i}_comment`];
+                    if (commentValue) {
+                        document.getElementById(`q${i}-comment`).value = commentValue;
+                    }
+                }
+            } catch (e) {
+                console.error('저장된 답변을 불러오는 중 오류가 발생했습니다.', e);
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심층 질문지 - 성연</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 커스텀 스타일 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3A5A40',
+                            light: '#4F6F52'
+                        },
+                        secondary: {
+                            DEFAULT: '#F5EBE0',
+                            dark: '#EADBC8'
+                        },
+                        accent: {
+                            DEFAULT: '#FFDAB9',
+                        },
+                        gold: {
+                            DEFAULT: '#B08D57',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div id="app" class="pb-20"> <!-- 하단 네비게이션 공간 확보 또는 하단 버튼 공간 확보 -->
+        <!-- 헤더 -->
+        <header class="bg-white p-5 flex justify-between items-center shadow-sm sticky top-0 z-20">
+            <div class="flex items-center">
+                <button onclick="history.back();" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 mr-3 cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">
+                     <i class="fas fa-arrow-left text-xl"></i>
+                </button>
+                <h1 class="text-xl font-bold">심층 질문지</h1>
+            </div>
+            <div class="pr-4 text-gray-600 text-sm">1/10 완료</div> <!-- 진행 상태 표시 -->
+        </header>
+
+        <!-- 질문 영역 -->
+        <div class="px-5 py-8 max-w-lg mx-auto">
+            <!-- 질문 섹션 제목 -->
+            <div class="mb-6">
+                <h2 class="text-lg font-bold text-primary mb-2">섹션 1: 기본 성향 및 생활</h2>
+                <p class="text-gray-600 text-sm">이 섹션은 당신의 일상적인 성격과 생활 습관에 대한 질문입니다.</p>
+            </div>
+
+            <!-- 개별 질문 항목 (예시) -->
+            <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                <p class="font-medium mb-4">Q1. 당신은 주로 혼자 시간을 보내는 것을 선호하나요, 아니면 사람들과 함께 있는 것을 선호하나요?</p>
+
+                <!-- 답변 선택지 (예: 5점 척도) -->
+                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                    <span>전혀 그렇지 않다</span>
+                    <span>매우 그렇다</span>
+                </div>
+                <div class="flex justify-between items-center space-x-2">
+                    <input type="radio" name="q1_answer" value="1" class="form-radio text-primary">
+                    <input type="radio" name="q1_answer" value="2" class="form-radio text-primary">
+                    <input type="radio" name="q1_answer" value="3" class="form-radio text-primary">
+                    <input type="radio" name="q1_answer" value="4" class="form-radio text-primary">
+                    <input type="radio" name="q1_answer" value="5" class="form-radio text-primary">
+                </div>
+                 <p class="text-xs text-gray-500 mt-3">이 답변은 당신의 사회적 성향을 파악하는 데 도움이 됩니다.</p> <!-- 도움말 툴팁 -->
+            </div>
+
+             <!-- 다음 질문 항목... (반복) -->
+             <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                <p class="font-medium mb-4">Q2. 당신은 계획에 따라 움직이는 것을 좋아하나요, 아니면 즉흥적인 것을 즐기나요?</p>
+
+                <!-- 답변 선택지 (예: 5점 척도) -->
+                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                    <span>전혀 그렇지 않다</span>
+                    <span>매우 그렇다</span>
+                </div>
+                <div class="flex justify-between items-center space-x-2">
+                    <input type="radio" name="q2_answer" value="1" class="form-radio text-primary">
+                    <input type="radio" name="q2_answer" value="2" class="form-radio text-primary">
+                    <input type="radio" name="q2_answer" value="3" class="form-radio text-primary">
+                    <input type="radio" name="q2_answer" value="4" class="form-radio text-primary">
+                    <input type="radio" name="q2_answer" value="5" class="form-radio text-primary">
+                </div>
+                 <p class="text-xs text-gray-500 mt-3">이 답변은 당신의 라이프스타일 선호도를 파악하는 데 도움이 됩니다.</p>
+            </div>
+
+             <!-- 주관식 질문 예시 -->
+             <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                 <p class="font-medium mb-4">Q3. 당신에게 '행복'이란 무엇인가요? (선택 사항)</p>
+                 <textarea class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" rows="4" placeholder="자유롭게 작성해주세요..."></textarea>
+                 <p class="text-xs text-gray-500 mt-2">최대 200자까지 작성 가능합니다.</p>
+             </div>
+
+            <!-- 다음 섹션 제목 -->
+            <div class="mb-6 mt-10">
+                <h2 class="text-lg font-bold text-primary mb-2">섹션 2: 관계와 가치관</h2>
+                <p class="text-gray-600 text-sm">이 섹션은 관계에서 중요하게 생각하는 가치에 대한 질문입니다.</p>
+            </div>
+
+             <!-- 개별 질문 항목 (예시) -->
+             <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                 <p class="font-medium mb-4">Q4. 관계에서 '솔직함'은 얼마나 중요하다고 생각하나요?</p>
+
+                 <!-- 답변 선택지 (예: 5점 척도) -->
+                 <div class="flex justify-between text-sm text-gray-600 mb-2">
+                     <span>전혀 중요하지 않다</span>
+                     <span>매우 중요하다</span>
+                 </div>
+                 <div class="flex justify-between items-center space-x-2">
+                     <input type="radio" name="q4_answer" value="1" class="form-radio text-primary">
+                     <input type="radio" name="q4_answer" value="2" class="form-radio text-primary">
+                     <input type="radio" name="q4_answer" value="3" class="form-radio text-primary">
+                     <input type="radio" name="q4_answer" value="4" class="form-radio text-primary">
+                     <input type="radio" name="q4_answer" value="5" class="form-radio text-primary">
+                 </div>
+             </div>
+             <!-- 계속해서 다른 질문들이 이어집니다... -->
+        </div>
+
+        <!-- 하단 네비게이션/액션 버튼 -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg flex justify-between items-center">
+             <button class="border border-primary text-primary px-6 py-3 rounded-lg font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50"><i class="fas fa-arrow-left mr-2"></i> 이전</button>
+             <button class="border border-primary text-primary px-6 py-3 rounded-lg font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">저장 후 나가기</button>
+             <button class="bg-primary text-white px-6 py-3 rounded-lg font-medium cursor-pointer transition-opacity hover:opacity-70 active:opacity-50">다음 <i class="fas fa-arrow-right ml-2"></i></button>
+        </div>
+
+    </div>
+
+    <!-- 필요한 JavaScript 스크립트 (탭 전환, 모달 등 - 이 페이지에서는 필요에 따라 추가) -->
+    <script>
+        // 예시: 라디오 버튼 선택 시 스타일 변경 등 JavaScript 상호작용 추가 가능
+         document.querySelectorAll('input[type="radio"]').forEach(radio => {
+             radio.addEventListener('change', function() {
+                 // 여기서는 단순히 로그를 찍지만, 실제로는 선택 상태에 따라 UI를 업데이트할 수 있습니다.
+                 console.log(`Question ${this.name} selected value: ${this.value}`);
+             });
+         });
+    </script>
+
+    <!-- 하단 네비게이션 컴포넌트 스크립트 (이 페이지에서는 하단 버튼을 직접 구현하므로 필요 없을 수 있음) -->
+    <!-- <script src="../components/bottom-nav.js"></script> -->
+</body>
+</html> 
