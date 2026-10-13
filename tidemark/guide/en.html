@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="color-scheme" content="light dark">
+ <title>Tidemark user guide</title>
+ <meta name="description" content="Tidemark user guide — Cleanup, Installed Apps, Disk Map, AI Tools, Servers, CLI.">
+ <link rel="canonical" href="https://thimpukr.github.io/tidemark/guide/en.html">
+ <link rel="icon" href="../assets/favicon.png" type="image/png">
+ <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="guide-page">
+ <a class="skip-link" href="#main">Skip to content</a>
+ <header class="site-header"><nav class="container guide-nav" aria-label="User guide navigation">
+  <a class="brand" href="../index.html?lang=en"><img src="../assets/icon-512.png" alt="" width="36" height="36"><span>Tidemark</span></a>
+  <a class="guide-back" href="../index.html?lang=en">← Back to the landing page</a>
+  <div class="guide-languages" role="group" aria-label="Guide language"><a href="ko.html" lang="ko">한국어</a><a href="en.html" lang="en" aria-current="page">English</a><a href="ja.html" lang="ja">日本語</a><a href="zh.html" lang="zh-CN">简体中文</a></div>
+ </nav></header>
+ <main id="main" class="container guide-content">
+ <aside class="guide-notice"><p>The first public release is in preparation. Installation steps below apply once you have an app build. See the download section for building from source today.</p><a href="../index.html?lang=en#download">Build from source →</a></aside>
+ <h1 id="tidemark-user-guide">Tidemark user guide</h1>
+<h2 id="contents">Contents</h2>
+<ol type="1">
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#cleanup">Cleanup</a></li>
+<li><a href="#installed-apps">Installed Apps</a></li>
+<li><a href="#disk-map">Disk Map</a></li>
+<li><a href="#ai-tools">AI Tools</a></li>
+<li><a href="#servers">Servers</a></li>
+<li><a href="#ask-ai">Ask AI</a></li>
+<li><a href="#terminal-and-shortcuts">Terminal and shortcuts</a></li>
+<li><a href="#settings">Settings</a></li>
+<li><a href="#safeguards">Safeguards</a></li>
+<li><a href="#cli-usage">CLI usage</a></li>
+<li><a href="#custom-cleanup-rules">Custom cleanup rules</a></li>
+<li><a href="#data-locations-and-troubleshooting">Data locations and troubleshooting</a></li>
+</ol>
+<h2 id="getting-started">Getting started</h2>
+<p>Tidemark is a free, open-source disk cleanup app. It finds the caches, dependencies, build artifacts, and AI models that pile up during development, along with apps you haven't used in a long time, and cleans them up safely. Scanning never deletes anything, and cleanup runs only after you confirm it.</p>
+<h3 id="installation">Installation</h3>
+<ol type="1">
+<li>Open <code>Tidemark_&lt;version&gt;_aarch64.dmg</code> and drag <code>Tidemark.app</code> to the <code>Applications</code> folder.</li>
+<li>If macOS blocks the first launch because the developer can't be verified, Control-click the app in Finder and choose <code>Open</code>.</li>
+<li>Requirements: Apple silicon Mac, macOS 11 or later.</li>
+</ol>
+<h3 id="layout">Layout</h3>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Area</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Header</td>
+<td>View tabs (Cleanup / Installed Apps / Disk Map), free disk space gauge, Rescan, and Terminal, Settings, and Ask AI icons</td>
+</tr>
+<tr class="even">
+<td>Left sidebar</td>
+<td>Totals per category and filters (risk, project idle time, git remote update)</td>
+</tr>
+<tr class="odd">
+<td>Center list</td>
+<td>Found items, with a search field and bulk selection buttons</td>
+</tr>
+<tr class="even">
+<td>Right detail panel</td>
+<td>Opens when you click an item. Shows path, size, description, how to restore, and folder contents</td>
+</tr>
+<tr class="odd">
+<td>Bottom bar</td>
+<td>Number of selected items and estimated reclaimable space, Move to Trash toggle, and Clean Up</td>
+</tr>
+</tbody>
+</table></div>
+<p>On first launch, click <code>Start Scan</code>. The last scan results are saved and shown right away on the next launch, and the status line at the top shows when the scan was run.</p>
+<h2 id="cleanup">Cleanup</h2>
+<p>In the Cleanup view, you pick items found by the scan and clean them up after confirming.</p>
+<h3 id="scanning">Scanning</h3>
+<ul>
+<li><code>Rescan</code> in the header scans everything again. Hover over a category in the sidebar to show a refresh icon that rescans only that category.</li>
+<li>While scanning, progress is shown, and you can stop with <code>Cancel Scan</code>.</li>
+</ul>
+<h3 id="ai-tool-and-model-cleanup">AI tool and model cleanup</h3>
+<ul>
+<li>Hugging Face checks <code>HF_HUB_CACHE</code> → <code>HF_HOME/hub</code> → <code>XDG_CACHE_HOME/huggingface/hub</code> → the default path and lists only models, datasets, and Spaces. Deleting a model folder may free very little shared storage; <code>hf cache delete</code> is recommended.</li>
+<li>Ollama honors <code>OLLAMA_MODELS</code>; use <code>ollama rm &lt;model&gt;</code> for individual models. LM Studio checks its home pointer, then <code>~/.lmstudio</code>, then the legacy <code>~/.cache/lm-studio</code> home for models.</li>
+<li>Claude Desktop and Windsurf caches and Whisper models have dedicated rules. General <code>~/.cache</code> cleanup excludes the LM Studio and Hugging Face homes and Whisper, and sign-in tokens and keys are protected.</li>
+</ul>
+<h3 id="browser-caches-and-personal-data-cleanup">Browser caches and personal data cleanup</h3>
+<ul>
+<li>Chrome, Edge, Brave, Arc, Firefox, Safari, Opera, and Vivaldi target cache folders only, without duplicating general app caches. Cookies, sign-ins, history, bookmarks, and extension data are preserved. Quit the browser when a running-process warning appears. Offline pages may need downloading again.</li>
+<li>Mail attachment download copies are <strong>Caution</strong> items. Mailboxes (<code>~/Library/Mail</code>) and server originals are preserved; save any edits to downloaded copies elsewhere first.</li>
+<li>iOS/iPadOS backups appear individually as <strong>Danger</strong> items and are excluded from safe-item selection. A backup may be your only copy for restoring a device; check for another backup, such as iCloud. Emptying the Trash makes recovery impossible.</li>
+<li>Inaccessible Safari, Mail, and device-backup paths are skipped. If needed, allow Full Disk Access in macOS settings and rescan.</li>
+</ul>
+<h3 id="risk">Risk</h3>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Safe</td>
+<td>Data that comes back when you re-download or rebuild. Usually fine to delete</td>
+</tr>
+<tr class="even">
+<td>Caution</td>
+<td>Data that takes time to download again, or that may take some settings with it</td>
+</tr>
+<tr class="odd">
+<td>Danger</td>
+<td>Data that's hard to get back or may contain user data. Requires separate confirmation when cleaning</td>
+</tr>
+</tbody>
+</table></div>
+<p>A <code>⚠</code> mark next to an item is a warning (for example, a related program is running). Hover over it to see the details.</p>
+<h3 id="filters-and-search">Filters and search</h3>
+<ul>
+<li>Use the sidebar to filter by category, risk, and project idle time (<code>30+ days</code>, <code>90+ days</code>, <code>180+ days</code>).</li>
+<li>The search field above the list (<code>⌘F</code>) searches names and paths and highlights matching text. With multiple words, only items containing all of them remain. Press <code>Esc</code> to clear it.</li>
+<li><code>Select safe items</code> selects only Safe items that have no warnings.</li>
+</ul>
+<h3 id="detail-panel">Detail panel</h3>
+<p>Click an item to open it on the right.</p>
+<ul>
+<li>Shows the description, how to restore (how it comes back after deletion), and the cleanup method (official command or direct deletion).</li>
+<li>You can expand the folder contents. Items that will be removed are tagged <code>Delete</code>.</li>
+<li>You can <code>Show in Finder</code>, open it in the built-in or an external terminal, <code>Recalculate</code>, or <code>Ask AI</code>.</li>
+</ul>
+<h3 id="pre-check">Pre-check</h3>
+<p>For items cleaned with a command, such as unused Docker data, unavailable iOS simulators, and the Homebrew cache, Tidemark calculates in advance how much space will actually be freed. The list shows the estimated reclaimable space alongside the total size, like <code>~13.4 GB / 56.4 GB</code>.</p>
+<h3 id="git-check">Git check</h3>
+<p>Project folders (node_modules, target, and so on) also show the state of their git repository.</p>
+<ul>
+<li><code>✓ Merged</code> / <code>Kept on remote</code>: the code is on the remote, so it's safe to clean.</li>
+<li><code>Check git</code>: there are uncommitted changes or unpushed commits.</li>
+<li>Turn on <code>Update remote info (git fetch)</code> in the sidebar to fetch the latest remote branches before judging, starting with the next scan.</li>
+</ul>
+<h3 id="cleaning-up">Cleaning up</h3>
+<ol type="1">
+<li>Select items with the checkboxes next to them. The bottom bar shows the number selected and the estimated reclaimable space.</li>
+<li>Turn on <code>Move to Trash</code> if you want. In that case, space is freed only after you empty the Trash. Old-file cleanups and command-based items are deleted right away.</li>
+<li>Click <code>Clean Up</code> to see the list of targets in a confirmation dialog. If it includes Danger items, you must check the consent box before <code>Clean Now</code> is enabled.</li>
+<li>When it's done, a summary shows the space freed, the change in free disk space, and any items that failed.</li>
+</ol>
+<h2 id="installed-apps">Installed Apps</h2>
+<p>The Installed Apps view removes apps you haven't used in a long time, along with their leftovers, and manages globally installed packages. The app scan uses only app information and this Mac's records; it doesn't use the network or AI.</p>
+<h3 id="app-list">App list</h3>
+<ul>
+<li>Last used dates come from macOS launch records. If there's no record, the date is estimated from when the app's data was last modified (<code>Estimated from app data</code>).</li>
+<li>Size is the app itself plus its leftovers (settings, caches, data).</li>
+<li>The toolbar has an idle-time filter (<code>Unused 90+ days</code>, <code>Unused 180+ days</code>, <code>Unused 1+ year</code>), sorting (<code>Largest first</code> / <code>Least recently used</code>), <code>Hide Apple apps</code>, and search.</li>
+<li>Quit apps marked <code>Running</code> before removing them.</li>
+</ul>
+<h3 id="removing-apps-and-leftovers">Removing apps and leftovers</h3>
+<ol type="1">
+<li>Click an app to see its leftovers in the detail panel. Items matching the bundle ID or developer ID are certain leftovers; items that only share the name are marked <code>Guessed</code>.</li>
+<li>Click <code>Remove app and leftovers</code>, then choose the removal method and the leftovers to remove. <code>Guessed</code> items and items shared with other apps are left out by default.</li>
+<li>Apps and leftovers moved to the Trash can be restored from the Trash.</li>
+</ol>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Removal method</th>
+<th>When to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Move to Trash (recommended)</td>
+<td>Most apps</td>
+</tr>
+<tr class="even">
+<td>Homebrew zap</td>
+<td>Apps installed with a Homebrew cask. Runs <code>brew uninstall --cask --zap</code>, then moves any remaining leftovers to the Trash</td>
+</tr>
+<tr class="odd">
+<td>Developer uninstaller</td>
+<td>When the app has its own uninstaller. That tool handles the removal</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="leftovers-from-uninstalled-apps">Leftovers from uninstalled apps</h3>
+<p>The <code>Leftovers from uninstalled apps</code> tab groups the settings, caches and containers that already-removed apps left in <code>~/Library</code>, one row per app.</p>
+<ul>
+<li>Anything still owned by an installed app (including helpers inside apps), Spotlight, a Homebrew cask or a running process is not listed. When ownership is uncertain, the item stays hidden.</li>
+<li>Items modified in the last 30 days and items belonging to Apple or shared updaters are excluded.</li>
+<li>Only caches, web data and window state are selected by default; settings and containers must be picked by hand. Login items are shown but cannot be removed.</li>
+<li><code>Move to Trash</code> re-checks each path right before moving it, and you can restore items from the Trash.</li>
+<li>If a size shows <code>Size unknown · Full Disk Access required</code>, allow Tidemark via <code>Open Full Disk Access settings</code>.</li>
+<li>Press <code>Dismiss</code> to hide an app whose data you want to keep; <code>Restore ignored groups</code> at the bottom shows it again.</li>
+</ul>
+<h3 id="admin-removal-vault">Admin removal vault</h3>
+<p>When you remove an app owned by the system (root), such as one installed from a .pkg or downloaded from the App Store, macOS asks for an administrator password.</p>
+<ul>
+<li>These apps are moved to <code>/Library/Application Support/Tidemark Trash</code> instead of the Trash.</li>
+<li>When the vault has items, a notice appears above the list. Space is freed only after you click <code>Empty vault</code>.</li>
+<li>Until you empty it, you can restore items by taking them out in Finder (administrator password required).</li>
+</ul>
+<h3 id="global-packages">Global packages</h3>
+<p>The <code>Global packages</code> tab in the toolbar gathers what you installed with Homebrew, npm, pnpm, yarn, and bun globals, pipx, uv tool, and cargo install, plus the npx cache.</p>
+<ul>
+<li><code>Check for updates</code> checks for new versions of Homebrew, npm, and pnpm packages. It uses the network, including <code>brew update</code>, but changes nothing.</li>
+<li>Turn on <code>Updates only</code> to show only packages with updates.</li>
+<li><code>Upgrade</code> (one package) or <code>Upgrade all</code> runs each package manager's official command in the built-in terminal, so you can see the progress and enter passwords yourself. Major versions may change.</li>
+<li>Removing a package also runs the manager's official command (<code>brew uninstall</code>, <code>npm uninstall -g</code>, and so on). Homebrew may refuse to remove a package installed as a <code>Dependency</code> of another package.</li>
+<li>The npx cache holds packages that npx downloaded when running them. Even if you move it to the Trash, npx downloads them again the next time you run it.</li>
+</ul>
+<h2 id="disk-map">Disk Map</h2>
+<p>Disk Map shows which folders take up space as rectangles sized in proportion to their size (a treemap).</p>
+<ol type="1">
+<li>Click <code>Analyze home folder</code> or <code>Analyze entire disk (/)</code>. The home folder can take a few minutes.</li>
+<li>Click a folder's rectangle to go into it. Click the path at the top (breadcrumbs) to go back to a parent folder.</li>
+<li>The list on the right shows the current folder's subfolders and files by size. You can open them in a terminal or <code>Ask AI</code>.</li>
+</ol>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>⌘</code> + scroll</td>
+<td>Zoom in and out</td>
+</tr>
+<tr class="even">
+<td><code>⌘</code> + drag</td>
+<td>Move around the zoomed map</td>
+</tr>
+<tr class="odd">
+<td><code>Reset zoom</code> / <code>Back to full map</code></td>
+<td>Reset zoom / Return to the base folder</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>A dashed yellow border marks folders that appear in Cleanup.</li>
+<li>Cloud-synced folders such as iCloud and other volumes are skipped so files aren't downloaded, and the skipped items are listed separately.</li>
+<li>Folders under 1 MB are grouped together. Analysis results are saved; click <code>Reanalyze</code> to recalculate.</li>
+</ul>
+<h3 id="large-files">Large Files</h3>
+<p>In <strong>Disk Map → Large Files</strong>, choose large files, old downloads, or duplicate downloads and click <strong>Scan</strong>. Choose a minimum size of 100 MB, 250 MB, 500 MB, 1 GB, or 5 GB, or an age of 30, 90, 180, or 365 days. Old downloads are top-level items in <code>~/Downloads</code>; folders also use the newest modification inside them. Search, sorting, and cancellation are available. Duplicate files of at least 1 MB are confirmed by size, the first 64 KB, and full SHA-256 hashes.</p>
+<p>Personal files start unselected. Only duplicate copies are selected, leaving the oldest file as a possible original. Review the count, total size, and list before moving items to Trash; file metadata is checked again immediately before the move. Library, music data, bundles, links, other volumes, and cloud placeholders are skipped, as are folders that cannot be fully checked. Results stay in memory. If access is denied, allow Tidemark under <strong>System Settings → Privacy &amp; Security → Files and Folders</strong> and scan again.</p>
+<h2 id="ai-tools">AI Tools</h2>
+<p>View AI tools’ disk usage, redownloadable caches, running AI processes’ CPU and memory, and supported GPU utilization. Expand a tool to see cache, model, and user-data paths and sizes; <strong>Show in Finder</strong> opens the location. User data is never labeled as cache. This screen is read-only and cannot delete files or stop processes.</p>
+<p>On first opening the tab, saved measurements appear immediately; automatic measurement runs only when no history exists. Use <strong>Measure again</strong> or <strong>Cancel</strong> as needed. Processes refresh about every 3 seconds while the tab is visible and can be paused. CPU uses a per-core scale and may exceed 100%; RSS memory may understate actual usage. Shared data can make per-model totals exceed physical disk usage. GPU information is hidden when unavailable.</p>
+<h2 id="servers">Servers</h2>
+<p>Lists listening TCP ports by process. Use <code>Refresh</code>, search by port or name, or filter to network-exposed ports. <code>This Mac only</code> means loopback; <code>Open to the network</code> means the server binds to an address other devices may reach, independently of firewall permissions. Common port uses are hints, not proof of the running program.</p>
+<ul>
+<li>Expand the command line and parent chain before choosing <code>Stop</code>. A confirmation appears, and changed start time, executable, or user cancels the action. Tidemark sends SIGTERM and waits up to five seconds. If still running, force stop with SIGKILL requires a separate confirmation and may lose unsaved work.</li>
+<li>Tidemark and its ancestors, other users, macOS components, Docker, and managed services cannot be stopped directly. Missing safety information also hides the stop button.</li>
+<li>Turn off AirPlay Receiver in System Settings › General › AirDrop &amp; Handoff. Stop Docker containers using the displayed <code>docker stop &lt;name&gt;</code>. For Homebrew services, the button prepares <code>brew services stop &lt;formula&gt;</code> in the built-in terminal; press Enter to run it.</li>
+<li>launchd services may restart; stop them in their service settings. For an Ollama.app child, quit Ollama from the menu bar. A development watcher parent can also be selected in the confirmation, but child-only is the default and stopping the parent may affect other work.</li>
+</ul>
+<h2 id="ask-ai">Ask AI</h2>
+<p>You can ask an AI agent CLI you already have installed about what you're looking at. AI can't delete anything; it only makes suggestions. Supported agents: Claude Code (<code>claude</code>), Codex (<code>codex</code>), Gemini CLI (<code>gemini</code>), Cursor CLI (<code>cursor-agent</code>), OpenCode (<code>opencode</code>).</p>
+<h3 id="how-to-ask">How to ask</h3>
+<ol type="1">
+<li>Click the sparkle icon at the right end of the header, <code>Ask AI</code> in the detail panel, or select items and click <code>Ask AI</code> in the bottom bar.</li>
+<li>Choose an agent and write your question. You can also click a suggested question for the current view (for example, "Which program created this folder?") to fill it in.</li>
+<li>Click <code>Start in Terminal</code> to run the agent in the built-in terminal. Information about the current view and selected items is passed along. If you change the view or selection during the conversation, the agent answers based on the latest state.</li>
+</ol>
+<p>AI answers in Tidemark's display language. The agent runs as a CLI on your computer, so sign-in and billing follow each CLI's settings.</p>
+<h3 id="ai-review-badges">AI review badges</h3>
+<p>When AI reviews an item, the result is shown in the list and the detail panel.</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Badge</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OK to clean</td>
+<td>AI thinks it's fine to delete</td>
+</tr>
+<tr class="even">
+<td>Check before cleaning</td>
+<td>AI suggests checking the contents before deleting</td>
+</tr>
+<tr class="odd">
+<td>Recommend keeping</td>
+<td>AI suggests keeping it</td>
+</tr>
+</tbody>
+</table></div>
+<p>The AI review card in the detail panel also shows the reasoning, what could go wrong if you clean it, and how to restore it. It's only AI's opinion, so decide for yourself whether to clean.</p>
+<h3 id="ai-cleanup-suggestions">AI cleanup suggestions</h3>
+<ul>
+<li>When AI suggests cleaning, a notice like <code>AI suggested cleaning N items</code> appears at the top of the window. Your selection doesn't change on its own.</li>
+<li>Click <code>Review</code> to load the suggested items into the confirmation dialog. You must check a box confirming you've reviewed the reasons yourself before you can clean.</li>
+<li>AI can be misled by text inside scanned files, so check the items yourself. If you don't need the suggestion, click <code>Dismiss</code>.</li>
+</ul>
+<h2 id="terminal-and-shortcuts">Terminal and shortcuts</h2>
+<p>A terminal is built in at the bottom of the window, so you can inspect items directly or run AI agents and package upgrades.</p>
+<ul>
+<li>Open and close it with the terminal icon in the header. <code>Terminal</code> in the detail panel opens a new terminal in that item's folder.</li>
+<li><code>+</code> in the tab bar opens a new terminal in the same folder, and <code>×</code> on a tab ends that shell.</li>
+<li>Drag the top edge of the terminal to resize it, and double-click it to return to the default height.</li>
+</ul>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>⌘F</code></td>
+<td>Go to the search field in the current view</td>
+</tr>
+<tr class="even">
+<td><code>Esc</code> (in the search field)</td>
+<td>Clear the search</td>
+</tr>
+<tr class="odd">
+<td><code>⌘+</code> / <code>⌘-</code> / <code>⌘0</code></td>
+<td>Zoom in / zoom out / actual size (works even when the cursor is in the terminal)</td>
+</tr>
+<tr class="even">
+<td><code>⌘</code> + scroll, <code>⌘</code> + drag</td>
+<td>Zoom and move the Disk Map</td>
+</tr>
+</tbody>
+</table></div>
+<p>On Windows and Linux, use <code>Ctrl</code> instead of <code>⌘</code>. The zoom level and terminal height are saved and kept on the next launch.</p>
+<h2 id="settings">Settings</h2>
+<p>Open it with the gear icon in the header. Changes apply right away and are kept on the next launch.</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Options</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Theme</td>
+<td>System / Light / Dark</td>
+<td>System (follows macOS or Windows light/dark mode)</td>
+</tr>
+<tr class="even">
+<td>Language</td>
+<td>System / 한국어 / English / 日本語 / 简体中文</td>
+<td>System (English for languages not in the list)</td>
+</tr>
+<tr class="odd">
+<td>AI agents</td>
+<td>Enable each agent, default agent, executable path</td>
+<td>Use all installed agents</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="menu-bar-and-automatic-rescanning">Menu bar and automatic rescanning</h3>
+<ul>
+<li><code>Show in menu bar</code> is off by default. When enabled, closing the window keeps Tidemark running. The menu shows free space, the last scan, and reclaimable space, with Open Tidemark, Scan now, and Quit actions. The Dock icon stays visible.</li>
+<li><code>Launch at login</code> is off by default and requires a signed app on macOS 13 or later. Its status comes from macOS; allow it in System Settings if approval is required. A login launch hides the window only when menu bar mode is enabled.</li>
+<li><code>Automatically rescan cleanup candidates</code> defaults to Manual, with 6 hours, daily, and weekly options. Scans run only while the app is running and idle, on AC power. Unknown power status skips the scan. Scanning never deletes files or sends notifications.</li>
+</ul>
+<h3 id="language">Language</h3>
+<ul>
+<li>When you change the language, the window redraws immediately. Scan warnings and check descriptions that were already generated appear in the new language starting with the next scan.</li>
+<li><code>System</code> follows the system language at launch. On macOS, this is the first preferred language in <code>System Settings › General › Language &amp; Region</code>.</li>
+</ul>
+<h3 id="ai-agents">AI agents</h3>
+<ul>
+<li>Tidemark only checks whether the executable exists and whether <code>--version</code> runs. Click <code>Check again</code> to recheck.</li>
+<li>If it isn't found on your PATH, enter the executable in the path field yourself (for example, <code>/opt/homebrew/bin/claude</code>) and click <code>Apply</code>.</li>
+<li>For sign-in or model setting issues, use <code>Run in Terminal</code> to launch the CLI directly and check.</li>
+</ul>
+<h3 id="sponsoring">Sponsoring</h3>
+<p>You can support Tidemark's development with <code>Sponsor</code> at the bottom of the Settings window.</p>
+<h3 id="app-updates">App updates</h3>
+<p>Automatic checks are on by default. At launch, once 24 hours have passed, Tidemark requests only the version file from GitHub; you can also choose <code>Check now</code>. Files download only after you choose <code>Update</code>. After signature, notarization, and checksum checks, choose <code>Install and restart</code>; restarting is disabled while cleanup is running. If the app location or verification prevents automatic installation, choose <code>Open release page</code> to download it yourself. Your user data is preserved.</p>
+<h2 id="safeguards">Safeguards</h2>
+<p>Tidemark shows what will be deleted before deleting it, and in the cases below it either refuses to delete or asks you to confirm again.</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Safeguard</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Read-only scan</td>
+<td>Scanning only finds items and measures their size. Cleanup runs only after you confirm it</td>
+</tr>
+<tr class="even">
+<td>Protected paths</td>
+<td>Refuses to delete your home, Desktop, Documents, and system folders, and their parent paths</td>
+</tr>
+<tr class="odd">
+<td>Official cleanup commands first</td>
+<td>Uses the methods tools provide first, such as <code>npm cache clean</code>, <code>uv cache clean</code>, and <code>docker system prune</code></td>
+</tr>
+<tr class="even">
+<td>Links and other volumes</td>
+<td>Doesn't follow symbolic links or cross into other file systems. Hard links are counted once, and shared space is shown separately</td>
+</tr>
+<tr class="odd">
+<td>Project marker files</td>
+<td>Only folders containing files such as package.json, Cargo.toml, or pyvenv.cfg are treated as project cleanup targets</td>
+</tr>
+<tr class="even">
+<td>Git check</td>
+<td>Shows uncommitted changes and unpushed commits. When calling git, command-running settings in the repository config (<code>core.fsmonitor</code> and others) are turned off</td>
+</tr>
+<tr class="odd">
+<td>Danger item consent</td>
+<td>If Danger items or AI suggestions are included, you must check a separate box in the confirmation dialog to proceed</td>
+</tr>
+<tr class="even">
+<td>Trash</td>
+<td>With Move to Trash turned on, you can undo. Removing apps also uses the Trash by default (the admin removal vault for root-owned apps)</td>
+</tr>
+<tr class="odd">
+<td>Path swap protection</td>
+<td>On macOS and Linux, old-file deletion is done relative to folder handles (<code>openat</code>/<code>unlinkat</code>)</td>
+</tr>
+<tr class="even">
+<td>Cleanup log</td>
+<td>Records what was cleaned and when in <code>clean-log.jsonl</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="cli-usage">CLI usage</h2>
+<p>The same engine is also available as the terminal command <code>tidemark</code>. Without <code>--yes</code>, <code>clean</code> only shows the plan (dry run) and deletes nothing.</p>
+<p>Install (from the repository): <code>cargo install --path crates/cli</code></p>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>What it does</th>
+<th>Main options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tidemark scan</code></td>
+<td>Scan for items you can clean</td>
+<td><code>--root &lt;folder&gt;</code>, <code>--no-projects</code>, <code>--no-rules</code>, <code>--min-mb &lt;MB&gt;</code> (default 1), <code>--git-fetch</code>, <code>--json</code></td>
+</tr>
+<tr class="even">
+<td><code>tidemark clean</code></td>
+<td>Clean items</td>
+<td>scan options + <code>--rule &lt;id&gt;</code> (repeatable), <code>--max-risk safe|caution|danger</code>, <code>--unused-days &lt;N&gt;</code>, <code>--include-warned</code>, <code>--trash</code>, <code>--yes</code></td>
+</tr>
+<tr class="odd">
+<td><code>tidemark rules</code></td>
+<td>List the rules that apply to the current OS</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>tidemark map [folder]</code></td>
+<td>Space used per folder (default: home folder, 2 levels deep)</td>
+<td>Base folder (for example, <code>/</code>, <code>~/Desktop</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>tidemark apps</code></td>
+<td>Last used date, size, and leftovers of installed apps</td>
+<td><code>--unused-days &lt;N&gt;</code>, <code>--no-apple</code>, <code>--json</code></td>
+</tr>
+<tr class="even">
+<td><code>tidemark outdated</code></td>
+<td>Global packages with new versions (Homebrew, npm, pnpm)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<pre class="sh"><code># Scan only (deletes nothing)
+tidemark scan
+
+# Show the cleanup plan for Safe items (dry run)
+tidemark clean --max-risk safe
+
+# Move node_modules of projects unused for more than 90 days to the Trash
+tidemark clean --rule project:node_modules --unused-days 90 --trash --yes
+
+# Actually clean a single rule
+tidemark clean --rule npm-cache --yes</code></pre>
+<p>The output language follows the OS language. You can change it like <code>TIDEMARK_LANG=en tidemark scan</code> (<code>ko</code>, <code>en</code>, <code>ja</code>, <code>zh</code>). Use <code>tidemark rules</code> to see rule IDs.</p>
+<h2 id="custom-cleanup-rules">Custom cleanup rules</h2>
+<p>To add caches that the built-in rules don't cover, or to turn off built-in rules, create <code>rules.toml</code>. On macOS it goes in <code>~/Library/Application Support/tidemark/rules.toml</code> (on other OSes, <code>&lt;config_dir&gt;/tidemark/rules.toml</code>).</p>
+<ul>
+<li>The format is the same as the built-in rules file (<code>crates/infra/rules/default.toml</code>).</li>
+<li>Using the same <code>id</code> overrides a built-in rule, and <code>disabled = true</code> turns a built-in rule off.</li>
+<li>Rescan after making changes for them to take effect. Names and descriptions in custom rules aren't translated; they're shown exactly as written.</li>
+</ul>
+<pre class="toml"><code># Add a new rule
+[[rules]]
+id = &quot;my-tool-cache&quot;
+name = &quot;My Tool cache&quot;
+category = &quot;package_cache&quot;
+risk = &quot;safe&quot;
+description = &quot;Files downloaded by my-tool.&quot;
+restore = &quot;Downloaded again on the next run.&quot;
+paths = { macos = [&quot;~/Library/Caches/my-tool&quot;], linux = [&quot;~/.cache/my-tool&quot;] }
+mode = &quot;contents&quot;
+
+# Turn off a built-in rule (id, name, category, and risk are always required)
+[[rules]]
+id = &quot;yarn-cache&quot;
+name = &quot;Yarn cache&quot;
+category = &quot;package_cache&quot;
+risk = &quot;safe&quot;
+disabled = true</code></pre>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code>, <code>name</code></td>
+<td>Rule identifier and the name shown in the app. Required, along with category and risk</td>
+</tr>
+<tr class="even">
+<td><code>category</code></td>
+<td><code>package_cache</code>, <code>project_deps</code>, <code>build_cache</code>, <code>ai_tool</code>, <code>ai_model</code>, <code>ide</code>, <code>container</code>, <code>temp</code>, <code>logs</code>, <code>app_cache</code>, <code>trash</code></td>
+</tr>
+<tr class="odd">
+<td><code>risk</code></td>
+<td><code>safe</code> | <code>caution</code> | <code>danger</code></td>
+</tr>
+<tr class="even">
+<td><code>paths</code></td>
+<td>Paths per <code>all</code>, <code>unix</code>, <code>macos</code>, <code>linux</code>, <code>windows</code>. Supports <code>~</code>, <code>$VAR</code>, <code>${VAR}</code>, <code>%VAR%</code> A single directory component <code>*</code> is supported for profiles; recursive <code>**</code> and multiple <code>*</code> components are not supported.</td>
+</tr>
+<tr class="odd">
+<td><code>paths.priority</code>, <code>paths.pointer</code>, <code>paths.first_existing</code></td>
+<td><code>priority</code> uses the first expandable path. <code>pointer = { file, suffix }</code> reads a home path from a file and appends the suffix; <code>first_existing = true</code> selects the first existing default folder.</td>
+</tr>
+<tr class="even">
+<td><code>mode</code></td>
+<td><code>whole</code> (delete the path) | <code>contents</code> (delete its contents) | <code>children</code> (show each child item) | <code>aged_files</code> (old files only)</td>
+</tr>
+<tr class="odd">
+<td><code>min_age_days</code>, <code>include</code>, <code>exclude</code></td>
+<td>Age in days and root-relative globs for <code>aged_files</code>; child-name globs for <code>children</code>. For <code>contents</code>, <code>exclude</code> lists root-relative child paths.</td>
+</tr>
+<tr class="even">
+<td><code>command</code></td>
+<td>Official cleanup command <code>{ program, args }</code>. Runs first if present</td>
+</tr>
+<tr class="odd">
+<td><code>fallback_delete</code></td>
+<td>Delete directly if there's no command or it fails (default true)</td>
+</tr>
+<tr class="even">
+<td><code>inspect</code></td>
+<td>Pre-check of reclaimable space before running: <code>simctl-unavailable</code> | <code>docker-prune</code> | <code>brew-cleanup</code></td>
+</tr>
+<tr class="odd">
+<td><code>partial</code></td>
+<td>The command cleans only part of it (the size shown is the maximum)</td>
+</tr>
+<tr class="even">
+<td><code>processes</code></td>
+<td>Process names to warn about if running</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="data-locations-and-troubleshooting">Data locations and troubleshooting</h2>
+<p>All of Tidemark's data is stored only on your computer. On macOS, it's in <code>~/Library/Application Support/tidemark/</code>.</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="Table — scroll horizontally to see all columns"><table>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>last-scan.json</code></td>
+<td>Last Cleanup scan results</td>
+</tr>
+<tr class="even">
+<td><code>apps.json</code></td>
+<td>Installed apps and global packages scan results</td>
+</tr>
+<tr class="odd">
+<td><code>disk-map.json</code></td>
+<td>Disk Map analysis results</td>
+</tr>
+<tr class="even">
+<td><code>ai-reviews.json</code></td>
+<td>AI review results</td>
+</tr>
+<tr class="odd">
+<td><code>ui.json</code></td>
+<td>Theme, language, zoom level, terminal height, and AI agent settings</td>
+</tr>
+<tr class="even">
+<td><code>clean-log.jsonl</code></td>
+<td>Cleanup log</td>
+</tr>
+<tr class="odd">
+<td><code>rules.toml</code></td>
+<td>Custom cleanup rules (only if you created it)</td>
+</tr>
+</tbody>
+</table></div>
+<p>If a <code>storage-clear</code> folder from the old name (Storage Clear) exists, it's moved to <code>tidemark</code> automatically on first launch.</p>
+<h3 id="faq">FAQ</h3>
+<p><strong>I cleaned up, but free space didn't increase.</strong></p>
+<ul>
+<li>If you cleaned with <code>Move to Trash</code> turned on, you need to empty the Trash. For apps removed with administrator privileges, click <code>Empty vault</code>.</li>
+<li>Files shared with other locations through hard links, such as the pnpm store, don't free space when deleted. They're marked <code>Shared hard links</code> in the list.</li>
+<li>If there are local Time Machine snapshots, the free space macOS shows may increase later.</li>
+</ul>
+<p><strong>Ask AI can't find the agent.</strong></p>
+<p>At launch, Tidemark takes the PATH from your login shell to find <code>claude</code> and <code>codex</code>. If it still can't find them, set the executable path yourself in Settings.</p>
+<p><strong>I changed the language, but some text still appears in the old language.</strong></p>
+<p>Scan warnings, pre-check descriptions, and git status notes are saved in the language used at scan time. <code>Rescan</code> to switch them to the new language.</p>
+<p><strong>Scan results don't match reality.</strong></p>
+<p><code>Last scan results · N days ago</code> in the status line at the top means saved results are being shown. <code>Rescan</code> before cleaning for accurate results.</p>
+<p><strong>On first open, it won't launch because of an "unidentified developer".</strong></p>
+<p>This build isn't notarized by Apple yet. Control-click the app in Finder and choose <code>Open</code>. After you allow it once, it opens normally from then on.</p>
+
+ </main>
+ <footer class="footer"><div class="container footer-inner"><p>© 2026 Fidelio · MIT License</p><div><a href="https://github.com/thimpuKR">GitHub</a><a href="https://github.com/sponsors/thimpuKR">GitHub Sponsors</a></div></div></footer>
+</body>
+</html>

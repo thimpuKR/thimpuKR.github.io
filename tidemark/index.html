@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Tidemark — 개발자의 Mac을 위한 디스크 정리</title>
+  <meta name="description" content="개발 캐시부터 AI 모델까지. 무엇이 공간을 차지하는지 확인하고, 직접 고른 항목만 안전하게 정리하세요. 무료 오픈 소스 Mac 앱 Tidemark.">
+  <link rel="canonical" href="https://thimpukr.github.io/tidemark/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tidemark">
+  <meta property="og:title" content="Tidemark — 개발자의 Mac을 위한 디스크 정리">
+  <meta property="og:description" content="개발 캐시부터 AI 모델까지. 무엇이 공간을 차지하는지 확인하고, 직접 고른 항목만 안전하게 정리하세요. 무료 오픈 소스 Mac 앱 Tidemark.">
+  <meta property="og:url" content="https://thimpukr.github.io/tidemark/">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:image" content="https://thimpukr.github.io/tidemark/assets/shot-cleanup.webp">
+  <meta property="og:image:width" content="1400">
+  <meta property="og:image:height" content="885">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body id="top">
+<a data-i18n="skip" class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+ <nav class="container nav" aria-label="주 내비게이션" data-i18n-aria="nav.label">
+  <a class="brand" href="#top"><img src="assets/icon-512.png" alt="" width="36" height="36"><span>Tidemark</span></a>
+  <div class="nav-links"><a data-i18n="nav.features" href="#features">기능</a><a data-i18n="nav.safety" href="#safety">안전</a><a data-i18n="nav.ai" href="#ai">AI</a><a data-i18n="nav.download" href="#download">다운로드</a><a data-i18n="nav.sponsor" href="#sponsor">후원</a></div>
+  <div class="nav-tools"><label class="sr-only" for="language" data-i18n="nav.language">언어</label><select id="language" hidden><option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option><option value="zh">简体中文</option></select><a class="github-icon" href="https://github.com/thimpuKR" aria-label="GitHub에서 개발자 보기" data-i18n-aria="nav.github"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-3c3-.3 6-1.5 6-5a4 4 0 0 0-1-3c.3-1 .3-2 0-3-1 0-2 .5-3 1a12 12 0 0 0-8 0C7 4 6 3.5 5 4c-.3 1-.3 2 0 3a4 4 0 0 0-1 3c0 3.5 3 4.7 6 5a3.5 3.5 0 0 0-1 3v4"/></svg></a></div>
+ </nav>
+</header>
+<main id="main">
+ <section class="hero" aria-labelledby="hero-title"><div class="container">
+  <div class="hero-copy"><p data-i18n="hero.eyebrow" class="eyebrow">개발자를 위한 디스크 정리</p>
+   <h1 id="hero-title"><span data-i18n="hero.line1">개발하며 쌓인 수십 GB,</span><br><span data-i18n="hero.line2" class="hero-accent">안전하게 되찾으세요.</span></h1>
+   <p data-i18n="hero.desc" class="hero-desc">캐시, 빌드 산출물, AI 모델까지. 공간을 차지하는 이유를 확인하고, 직접 고른 항목만 정리하세요.</p>
+   <div class="actions"><a data-i18n="nav.download" class="button primary" href="#download">다운로드</a><a data-i18n="hero.guide" class="button ghost" data-guide href="guide/ko.html">사용 설명서</a></div>
+   <p data-i18n="hero.trust" class="trust">무료 · 오픈 소스 · macOS 11+ · Apple Silicon / Intel</p>
+  </div>
+  <figure class="hero-shot"><div class="window"><img src="assets/shot-cleanup.webp" alt="Tidemark 정리 후보 화면: 카테고리별 항목, 위험도와 확보 예상량" data-i18n-alt="alt.cleanup" loading="lazy" width="1400" height="885"></div><figcaption data-i18n="hero.caption">실제 앱 화면 · 확보 가능한 용량은 Mac마다 다릅니다.</figcaption></figure>
+ </div></section>
+ <section id="features" class="section" aria-labelledby="features-title"><div class="container">
+  <div class="section-heading"><p data-i18n="features.eyebrow" class="eyebrow">무엇을 찾나</p><h2 data-i18n="features.title" id="features-title">쌓이는 곳을 알고 있습니다.</h2><p data-i18n="features.desc">개발 도구가 남긴 데이터부터 오래된 파일까지, 종류별로 모아 보여 줍니다.</p></div>
+  <div class="feature-grid"><article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg></div><h3 data-i18n="f.cache.title">캐시 · 빌드 · 의존성</h3><p data-i18n="f.cache.desc">npm·uv·cargo 캐시와 node_modules, target. 다시 만들 수 있는 데이터부터 찾습니다.</p></article>
+<article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8m-4-5v5m-5-12 2 2-2 2m5 0h4"/></svg></div><h3 data-i18n="f.dev.title">IDE · 시뮬레이터 · Docker</h3><p data-i18n="f.dev.desc">Xcode 데이터, 사용 불가 iOS 시뮬레이터, Docker 미사용 데이터를 확인합니다.</p></article>
+<article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"/></svg></div><h3 data-i18n="f.ai.title">AI 모델 · 도구 데이터</h3><p data-i18n="f.ai.desc">Hugging Face·Ollama·LM Studio 모델과 AI 도구의 캐시·사용자 데이터를 구분합니다.</p></article>
+<article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17h7m-3.5-3.5v7"/></svg></div><h3 data-i18n="f.apps.title">설치된 앱 · 남은 흔적</h3><p data-i18n="f.apps.desc">오래 안 쓴 앱의 크기와 흔적, 이미 삭제한 앱이 남긴 데이터를 살펴봅니다.</p></article>
+<article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Zm0 0v6h6"/><path d="M8 13h8m-8 4h5"/></svg></div><h3 data-i18n="f.files.title">큰 파일 · 다운로드</h3><p data-i18n="f.files.desc">용량 지도에서 큰 폴더를 찾고, 오래되거나 중복된 다운로드를 직접 확인합니다.</p></article>
+<article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7a9 9 0 0 0-15-2L2 8m0-5v5h5M4 17a9 9 0 0 0 15 2l3-3m0 5v-5h-5"/></svg></div><h3 data-i18n="f.packages.title">전역 패키지 업데이트</h3><p data-i18n="f.packages.desc">Homebrew·npm·pnpm의 새 버전을 확인하고, 공식 명령으로 업그레이드합니다.</p></article>
+</div></div></section>
+ <section class="section tour" aria-labelledby="tour-title"><div class="container">
+ <div class="section-heading"><p data-i18n="tour.eyebrow" class="eyebrow">화면 둘러보기</p><h2 data-i18n="tour.title" id="tour-title">공간을 읽는 네 가지 시선.</h2></div>
+ <div class="tabs" data-tabs hidden><button data-i18n="tour.cleanup" type="button" id="tab-cleanup" data-tab="cleanup">정리 후보</button><button data-i18n="tour.map" type="button" id="tab-map" data-tab="map">용량 지도</button><button data-i18n="tour.ai" type="button" id="tab-ai" data-tab="ai">AI 도구</button><button data-i18n="tour.servers" type="button" id="tab-servers" data-tab="servers">서버</button></div>
+<div id="panel-cleanup" class="tour-panel"><div class="tour-caption"><h3 data-i18n="tour.cleanup">정리 후보</h3><p data-i18n="tour.cleanup.desc">안전·주의·위험을 먼저 확인하세요. 복구 방법과 git 상태, 공식 명령의 확보 예상량을 보고 선택할 수 있습니다.</p></div><div class="window"><img src="assets/shot-cleanup.webp" alt="Tidemark 정리 후보 화면: 카테고리별 항목, 위험도와 확보 예상량" data-i18n-alt="alt.cleanup" loading="lazy" width="1400" height="885"></div></div>
+<div id="panel-map" class="tour-panel" hidden><div class="tour-caption"><h3 data-i18n="tour.map">용량 지도</h3><p data-i18n="tour.map.desc">크기에 비례한 지도로 큰 폴더를 따라가세요. 큰 파일과 오래된·중복 다운로드도 여기서 확인합니다.</p></div><div class="window"><img src="assets/shot-map.webp" alt="Tidemark 용량 지도: 폴더 크기를 비교하는 트리맵" data-i18n-alt="alt.map" loading="lazy" width="1400" height="885"></div></div>
+<div id="panel-ai" class="tour-panel" hidden><div class="tour-caption"><h3 data-i18n="tour.ai">AI 도구</h3><p data-i18n="tour.ai.desc">AI 도구의 디스크·CPU·메모리 사용량을 읽기 전용으로 확인하세요. 캐시와 사용자 데이터를 구분해 보여 줍니다.</p></div><div class="window"><img src="assets/shot-ai-tools.webp" alt="Tidemark AI 도구 화면: 디스크, CPU와 메모리 사용량" data-i18n-alt="alt.ai" loading="lazy" width="1400" height="885"></div></div>
+<div id="panel-servers" class="tour-panel" hidden><div class="tour-caption"><h3 data-i18n="tour.servers">서버</h3><p data-i18n="tour.servers.desc">프로세스별 열린 포트와 네트워크 노출 상태를 확인하세요. 종료 전에는 대상을 다시 확인하고 확인 창을 거칩니다.</p></div><div class="window"><img src="assets/shot-servers.webp" alt="Tidemark 서버 화면: 프로세스별 열린 포트와 네트워크 노출 상태" data-i18n-alt="alt.servers" loading="lazy" width="1400" height="885"></div></div>
+<p data-i18n="tour.note" class="fine-print">스크린샷은 다크 테마 예시이며 앱은 라이트·다크 테마를 모두 지원합니다.</p></div></section>
+ <section id="safety" class="section" aria-labelledby="safety-title"><div class="container safety-layout">
+ <div class="section-heading"><p data-i18n="safety.eyebrow" class="eyebrow">안전장치</p><h2 data-i18n="safety.title" id="safety-title">지우기 전에, 한 번 더.</h2><p data-i18n="safety.desc">무엇이 지워지는지 보여 주고, 위험한 선택에는 한 번 더 확인을 받습니다.</p><div class="safety-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7v5c0 5 9 10 9 10s9-5 9-10V7Z"/><path d="m8 12 3 3 5-6"/></svg></div></div>
+ <ul class="safety-list"><li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.scan.title">스캔은 읽기 전용</h3><p data-i18n="s.scan.desc">찾고 크기를 재기만 합니다. 스캔은 아무것도 지우지 않습니다.</p></div></li>
+<li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.trash.title">기본은 휴지통으로</h3><p data-i18n="s.trash.desc">되돌릴 수 있도록 휴지통 이동을 기본으로 합니다. 명령 실행·오래된 파일 정리는 즉시 삭제될 수 있습니다.</p></div></li>
+<li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.git.title">git 변경 확인</h3><p data-i18n="s.git.desc">프로젝트의 커밋 안 된 변경과 푸시하지 않은 커밋을 표시합니다.</p></div></li>
+<li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.process.title">사용 중인 프로세스 감지</h3><p data-i18n="s.process.desc">관련 프로그램이 실행 중이면 정리 전에 경고합니다.</p></div></li>
+<li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.official.title">공식 정리 명령 우선</h3><p data-i18n="s.official.desc">npm·uv·Docker가 제공하는 정리 방법을 먼저 사용합니다.</p></div></li>
+<li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.preflight.title">확보량 사전 점검</h3><p data-i18n="s.preflight.desc">지원되는 공식 명령은 전체 크기와 실제 확보 예상량을 구분합니다.</p></div></li>
+<li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.personal.title">개인 파일은 직접 선택</h3><p data-i18n="s.personal.desc">개인 파일은 기본 선택하지 않습니다. 중복 사본 일괄 선택은 원본 후보를 남깁니다.</p></div></li>
+<li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><div><h3 data-i18n="s.access.title">권한 창 없이 접근 확인</h3><p data-i18n="s.access.desc">전체 디스크 접근 여부를 조용히 확인하고, 읽을 수 없는 곳은 건너뜁니다.</p></div></li>
+</ul></div></section>
+ <section id="ai" class="section ai-section" aria-labelledby="ai-title"><div class="container ai-layout">
+ <div><p data-i18n="ai.eyebrow" class="eyebrow">AI와 함께</p><h2 data-i18n="ai.title" id="ai-title">“이 폴더, 지워도 될까?”</h2><p data-i18n="ai.desc" class="lead">MCP로 지금 보고 있는 항목을 에이전트에게 보여 주세요. 근거와 복구 방법을 검토받고, 정리 여부는 직접 결정합니다.</p><ul class="agents" aria-label="지원 AI 에이전트" data-i18n-aria="ai.agents.label"><li>Claude Code</li><li>Codex</li><li>Gemini CLI</li><li>Cursor CLI</li><li>OpenCode</li></ul><p data-i18n="ai.note" class="fine-print">에이전트는 별도 설치가 필요하며, 로그인·요금은 각 CLI의 설정을 따릅니다.</p></div>
+ <div class="cli-block"><h3 data-i18n="cli.title">익숙한 터미널, 같은 엔진.</h3><p data-i18n="cli.desc">앱 안의 터미널에서 살펴보거나, CLI로 바로 스캔하세요.</p><div class="terminal"><div class="terminal-bar" aria-hidden="true"><span>Terminal</span><span>~/</span></div><pre><code><span class="code-comment" data-i18n="cli.comment"># 스캔만 합니다. 아무것도 지우지 않습니다.</span>
+<span class="prompt">$</span> tidemark scan</code></pre></div></div>
+ </div></section>
+ <section class="privacy section" aria-labelledby="privacy-title"><div class="container privacy-inner"><div class="privacy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg></div><div><h2 data-i18n="privacy.title" id="privacy-title">내 Mac의 데이터는, 내 Mac에.</h2><p data-i18n="privacy.desc">스캔 결과와 정리 이력은 이 Mac에만 저장됩니다. 네트워크는 끌 수 있는 업데이트 확인과 직접 실행한 명령·AI 에이전트가 사용합니다.</p></div></div></section>
+ <section id="download" class="section" aria-labelledby="download-title"><div class="container">
+ <div class="download-card"><img src="assets/icon-512.png" alt="" width="88" height="88"><p data-i18n="download.eyebrow" class="eyebrow">곧 만나요</p><h2 data-i18n="download.title" id="download-title">새로운 여유를 준비 중입니다.</h2><p data-i18n="download.desc" class="lead">첫 공개 버전을 준비하고 있습니다. 서명·공증된 .dmg로 배포됩니다.</p><a data-i18n="download.follow" class="button primary" href="https://github.com/thimpuKR">GitHub에서 소식 받기</a><p data-i18n="download.requirements" class="trust">시스템 요구 사항: macOS 11 이상 · Apple Silicon / Intel</p></div>
+ <div class="build-layout"><div><h3 data-i18n="build.title">Homebrew · 소스에서 빌드</h3><p data-i18n="build.desc">Homebrew 설치 안내는 공개 릴리스와 함께 제공됩니다. 지금은 소스 저장소에서 아래 명령으로 앱 번들을 만들 수 있습니다.</p><a data-i18n="build.readme" class="text-link" href="https://github.com/thimpuKR" data-readme>GitHub에서 소스 공개 소식 →</a></div><pre class="build-code"><code>cargo install dioxus-cli --version 0.7.10 --locked
+dx bundle --package tidemark-app --release</code></pre></div>
+ </div></section>
+ <section id="sponsor" class="section sponsor" aria-labelledby="sponsor-title"><div class="container sponsor-inner"><div><h2 data-i18n="sponsor.title" id="sponsor-title">다음 정리를 함께 만듭니다.</h2><p data-i18n="sponsor.desc">Tidemark는 무료 오픈 소스입니다. 도움이 되었다면 개발을 응원해 주세요.</p></div><a class="button secondary" href="https://github.com/sponsors/thimpuKR"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span data-i18n="sponsor.button">GitHub Sponsors로 후원</span></a></div></section>
+</main>
+<footer class="footer"><div class="container footer-inner"><a class="brand" href="#top"><img src="assets/icon-512.png" alt="" width="28" height="28"><span>Tidemark</span></a><p>© 2026 Fidelio · MIT License</p><div><a href="https://github.com/thimpuKR">GitHub</a><a data-i18n="nav.sponsor" href="https://github.com/sponsors/thimpuKR">후원</a></div></div></footer>
+</body>
+</html>

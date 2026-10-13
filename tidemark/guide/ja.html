@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="ja">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="color-scheme" content="light dark">
+ <title>Tidemark ユーザーガイド</title>
+ <meta name="description" content="Tidemark ユーザーガイド — Cleanup, Installed Apps, Disk Map, AI Tools, Servers, CLI.">
+ <link rel="canonical" href="https://thimpukr.github.io/tidemark/guide/ja.html">
+ <link rel="icon" href="../assets/favicon.png" type="image/png">
+ <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="guide-page">
+ <a class="skip-link" href="#main">本文へ移動</a>
+ <header class="site-header"><nav class="container guide-nav" aria-label="ユーザーガイドのナビゲーション">
+  <a class="brand" href="../index.html?lang=ja"><img src="../assets/icon-512.png" alt="" width="36" height="36"><span>Tidemark</span></a>
+  <a class="guide-back" href="../index.html?lang=ja">← ランディングページに戻る</a>
+  <div class="guide-languages" role="group" aria-label="ガイドの言語"><a href="ko.html" lang="ko">한국어</a><a href="en.html" lang="en">English</a><a href="ja.html" lang="ja" aria-current="page">日本語</a><a href="zh.html" lang="zh-CN">简体中文</a></div>
+ </nav></header>
+ <main id="main" class="container guide-content">
+ <aside class="guide-notice"><p>初の一般公開版は準備中です。以下のインストール手順はアプリを入手した後の案内です。現在のソースからのビルド方法はダウンロード欄をご覧ください。</p><a href="../index.html?lang=ja#download">ソースからのビルド方法 →</a></aside>
+ <h1 id="tidemark-ユーザーガイド">Tidemark ユーザーガイド</h1>
+<h2 id="目次">目次</h2>
+<ol type="1">
+<li><a href="#はじめに">はじめに</a></li>
+<li><a href="#整理候補">整理候補</a></li>
+<li><a href="#インストール済みアプリ">インストール済みアプリ</a></li>
+<li><a href="#容量マップ">容量マップ</a></li>
+<li><a href="#aiツール">AIツール</a></li>
+<li><a href="#サーバー">サーバー</a></li>
+<li><a href="#aiに質問">AIに質問</a></li>
+<li><a href="#ターミナルとショートカット">ターミナルとショートカット</a></li>
+<li><a href="#設定">設定</a></li>
+<li><a href="#安全機能">安全機能</a></li>
+<li><a href="#cliの使い方">CLIの使い方</a></li>
+<li><a href="#ユーザー定義のクリーンアップルール">ユーザー定義のクリーンアップルール</a></li>
+<li><a href="#データの保存場所とトラブルシューティング">データの保存場所とトラブルシューティング</a></li>
+</ol>
+<h2 id="はじめに">はじめに</h2>
+<p>Tidemark は、開発中にたまったキャッシュ・依存関係・ビルド成果物・AIモデルや、長く使っていないアプリを見つけて安全にクリーンアップする、無料のオープンソースのディスククリーンアップアプリです。スキャンは何も削除せず、クリーンアップは確認ダイアログを経た場合にのみ実行されます。</p>
+<h3 id="インストール">インストール</h3>
+<ol type="1">
+<li><code>Tidemark_&lt;バージョン&gt;_aarch64.dmg</code> を開き、<code>Tidemark.app</code> を <code>アプリケーション</code> フォルダにドラッグします。</li>
+<li>初回起動時に macOS が「開発元を確認できない」としてブロックした場合は、Finder でアプリを Control キーを押しながらクリック › <code>開く</code> を選びます。</li>
+<li>動作環境：Apple Silicon Mac、macOS 11 以降。</li>
+</ol>
+<h3 id="画面構成">画面構成</h3>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>場所</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ヘッダー</td>
+<td>画面タブ（整理候補 / インストール済みアプリ / 容量マップ）、ディスクの空き容量ゲージ、再スキャン、ターミナル・設定・AIに質問のアイコン</td>
+</tr>
+<tr class="even">
+<td>左サイドバー</td>
+<td>カテゴリ別の合計とフィルタ（リスク、プロジェクトの未使用期間、リモート情報の更新）</td>
+</tr>
+<tr class="odd">
+<td>中央のリスト</td>
+<td>見つかった項目。検索欄、一括選択ボタン</td>
+</tr>
+<tr class="even">
+<td>右の詳細パネル</td>
+<td>項目をクリックすると開きます。パス、サイズ、説明、復元方法、フォルダの内容</td>
+</tr>
+<tr class="odd">
+<td>下部バー</td>
+<td>選択した項目数と解放見込み、ゴミ箱に移動するかどうか、クリーンアップ</td>
+</tr>
+</tbody>
+</table></div>
+<p>初回起動時は <code>スキャン開始</code> を押します。前回のスキャン結果は保存され、次回起動時にすぐ表示されます。上部のステータス行には、いつスキャンした結果かが表示されます。</p>
+<h2 id="整理候補">整理候補</h2>
+<p>整理候補画面では、スキャンで見つかった項目を選び、確認ダイアログを経てクリーンアップします。</p>
+<h3 id="スキャン">スキャン</h3>
+<ul>
+<li>ヘッダーの <code>再スキャン</code> はすべてを再検索します。サイドバーのカテゴリにマウスを重ねると表示される更新アイコンは、そのカテゴリだけを再検索します。</li>
+<li>スキャン中は進行状況が表示され、<code>スキャンをキャンセル</code> で中止できます。</li>
+</ul>
+<h3 id="aiツールとモデルの整理">AIツールとモデルの整理</h3>
+<ul>
+<li>Hugging Faceは <code>HF_HUB_CACHE</code> → <code>HF_HOME/hub</code> → <code>XDG_CACHE_HOME/huggingface/hub</code> → 既定のパスの順に確認し、モデル・データセット・Spaceだけを表示します。共有ストレージではモデルフォルダを削除しても空き容量がほとんど増えない場合があるため、<code>hf cache delete</code> を推奨します。</li>
+<li>Ollamaは <code>OLLAMA_MODELS</code> を優先します。個別のモデルは <code>ollama rm &lt;モデル&gt;</code> で削除してください。LM Studioはホームポインタ → <code>~/.lmstudio</code> → 旧 <code>~/.cache/lm-studio</code> の順にモデルフォルダを探します。</li>
+<li>Claudeデスクトップ・WindsurfのキャッシュとWhisperモデルを個別に検出します。通常の <code>~/.cache</code> 整理からLM StudioとHugging FaceのホームおよびWhisperを除外し、ログイントークンと鍵を保護します。</li>
+</ul>
+<h3 id="ブラウザーキャッシュと個人データの整理">ブラウザーキャッシュと個人データの整理</h3>
+<ul>
+<li>Chrome・Edge・Brave・Arc・Firefox・Safari・Opera・Vivaldi はキャッシュフォルダーのみを対象にし、一般のアプリキャッシュと重複しません。Cookie・ログイン情報・履歴・ブックマーク・拡張機能のデータは保持します。実行中の警告があればブラウザーを終了してください。オフラインページは再ダウンロードが必要な場合があります。</li>
+<li>Mail の添付ダウンロードコピーは <strong>注意</strong> 項目です。メールボックス（<code>~/Library/Mail</code>）とサーバーの原本は保持します。コピーの編集内容は先に別の場所に保存してください。</li>
+<li>iOS/iPadOS バックアップは一つずつ <strong>危険</strong> 項目として表示し、安全な項目の選択には含めません。復元に必要な唯一のコピーかもしれないため、iCloud などの別のバックアップを確認してください。ゴミ箱を空にすると復元できません。</li>
+<li>Safari・Mail・デバイスバックアップにアクセスできない場合はスキップします。必要に応じて macOS 設定でフルディスクアクセスを許可し、再スキャンしてください。</li>
+</ul>
+<h3 id="リスク">リスク</h3>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>表示</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>安全</td>
+<td>再ダウンロードや再ビルドで再生成されるデータ。通常はそのまま削除して問題ありません</td>
+</tr>
+<tr class="even">
+<td>注意</td>
+<td>再ダウンロードに時間がかかったり、一部の設定も一緒に失われたりする可能性のあるデータ</td>
+</tr>
+<tr class="odd">
+<td>危険</td>
+<td>再取得が難しい、またはユーザーデータが含まれている可能性のあるデータ。クリーンアップ時に別途確認を求めます</td>
+</tr>
+</tbody>
+</table></div>
+<p>項目の横の <code>⚠</code> は警告です（例：関連するプログラムが実行中）。マウスを重ねると内容が表示されます。</p>
+<h3 id="フィルタと検索">フィルタと検索</h3>
+<ul>
+<li>サイドバーで、カテゴリ、リスク、プロジェクトの未使用期間（30日・90日・180日以上）で絞り込みます。</li>
+<li>リスト上部の検索欄（<code>⌘F</code>）は名前とパスから検索し、一致した文字を強調表示します。複数の語を入力すると、すべてを含む項目だけが残ります。<code>Esc</code> で消去します。</li>
+<li><code>安全な項目を選択</code> は、警告のない安全な項目だけを選択します。</li>
+</ul>
+<h3 id="詳細パネル">詳細パネル</h3>
+<p>項目をクリックすると右側に開きます。</p>
+<ul>
+<li>説明と復元方法（削除後に再生成される仕組み）、クリーンアップ方法（公式コマンドまたは直接削除）を表示します。</li>
+<li>フォルダの内容を展開して確認でき、削除対象には <code>削除</code> の表示が付きます。</li>
+<li><code>Finderで表示</code>、内蔵または外部ターミナルで開く、<code>再計算</code>、<code>AIに質問</code> が使えます。</li>
+</ul>
+<h3 id="事前チェック">事前チェック</h3>
+<p>Docker の未使用データ、使用できない iOS シミュレータ、Homebrew キャッシュのようにコマンドでクリーンアップする項目は、実際に解放される容量を事前に計算します。リストには <code>約 13.4 GB / 合計56.4 GB</code> のように、解放見込みと全体のサイズが併せて表示されます。</p>
+<h3 id="git-の確認">git の確認</h3>
+<p>プロジェクトフォルダ（node_modules、target など）には、git リポジトリの状態も表示されます。</p>
+<ul>
+<li><code>✓ マージ済み</code> / <code>リモートに保存済み</code>：コードがリモートにあるため、クリーンアップしても安全です。</li>
+<li><code>git の確認が必要</code>：コミットしていない変更や、プッシュしていないコミットがあります。</li>
+<li>サイドバーの <code>リモート情報を更新（git fetch）</code> をオンにすると、次回のスキャンからリモートブランチを最新の状態に取得してから判定します。</li>
+</ul>
+<h3 id="クリーンアップの実行">クリーンアップの実行</h3>
+<ol type="1">
+<li>項目の前にあるチェックボックスで選択します。下部バーに選択数と解放見込みが表示されます。</li>
+<li>必要に応じて <code>ゴミ箱に移動</code> をオンにします。この場合、容量はゴミ箱を空にすると解放されます。古いファイルのクリーンアップとコマンド実行の項目はすぐに削除されます。</li>
+<li><code>クリーンアップ</code> を押すと、確認ダイアログに対象の一覧が表示されます。危険な項目が含まれている場合は、同意のチェックを入れると <code>実行</code> が有効になります。</li>
+<li>完了すると、解放した容量、ディスクの空き容量の変化、失敗した項目が概要として表示されます。</li>
+</ol>
+<h2 id="インストール済みアプリ">インストール済みアプリ</h2>
+<p>インストール済みアプリ画面では、長く使っていないアプリを残留ファイルまで含めて削除し、グローバルにインストールしたパッケージを管理します。アプリのスキャンはアプリ情報とこの Mac の記録だけを使い、ネットワークや AI は使いません。</p>
+<h3 id="アプリ一覧">アプリ一覧</h3>
+<ul>
+<li>最終使用日には macOS の起動記録を使い、記録がない場合はアプリデータの更新日から推定します（<code>アプリデータから推定</code>）。</li>
+<li>サイズはアプリ本体と残留ファイル（設定・キャッシュ・データ）を合計した値です。</li>
+<li>ツールバーでは、未使用期間（90日・180日・1年以上）、並べ替え（サイズの大きい順 / 使っていない順）、<code>Apple のアプリを隠す</code>、検索を使えます。</li>
+<li><code>実行中</code> と表示されているアプリは、終了してから削除してください。</li>
+</ul>
+<h3 id="アプリと残留ファイルの削除">アプリと残留ファイルの削除</h3>
+<ol type="1">
+<li>アプリをクリックすると、詳細パネルに残留ファイルの一覧が表示されます。バンドル ID・開発元 ID が一致した項目は確実な残留ファイルで、名前だけが一致した項目は <code>推定</code> と表示されます。</li>
+<li><code>アプリと残留ファイルを削除</code> を押し、削除方法と一緒に削除する残留ファイルを選びます。<code>推定</code> の項目と、他のアプリと共有している項目は、初期状態で選択から外れています。</li>
+<li>ゴミ箱に移動したアプリと残留ファイルは、ゴミ箱から元に戻せます。</li>
+</ol>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>削除方法</th>
+<th>使う場面</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ゴミ箱に移動（推奨）</td>
+<td>ほとんどのアプリ</td>
+</tr>
+<tr class="even">
+<td>Homebrew zap</td>
+<td>Homebrew cask でインストールしたアプリ。<code>brew uninstall --cask --zap</code> を実行した後、残った残留ファイルをゴミ箱に移動します</td>
+</tr>
+<tr class="odd">
+<td>開発元のアンインストーラ</td>
+<td>アプリに専用のアンインストーラがある場合。削除処理はそのツールが行います</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="削除済みアプリの残存データ">削除済みアプリの残存データ</h3>
+<p>ツールバーの<code>削除済みアプリの残存データ</code>タブは、すでに削除したアプリが<code>~/Library</code>に残した設定・キャッシュ・コンテナをアプリ単位でまとめて表示します。</p>
+<ul>
+<li>インストール済みアプリ（アプリ内のヘルパーを含む）、Spotlight、Homebrew cask、実行中のプロセスのいずれかが持ち主と確認できるものは表示しません。確実でない場合は表示しない側を選びます。</li>
+<li>最近30日以内に変更された項目と、Apple・共通アップデーターの項目は除外します。</li>
+<li>既定で選択されるのはキャッシュ・Webデータ・ウインドウの状態だけで、設定・コンテナは自分で選びます。自動起動項目は表示のみです。</li>
+<li><code>ゴミ箱に移動</code>は移動の直前に各パスを再確認し、ゴミ箱から戻せます。</li>
+<li>サイズが<code>サイズ不明 · フルディスクアクセスが必要です</code>と表示される場合は、<code>フルディスクアクセス設定を開く</code>からTidemarkを許可してください。</li>
+<li>残したいアプリは<code>無視</code>で一覧から外れ、下の<code>無視を解除</code>で再表示できます。</li>
+</ul>
+<h3 id="管理者用の削除保管庫">管理者用の削除保管庫</h3>
+<p>.pkg でインストールしたアプリや App Store から入手したアプリなど、システム（root）所有のアプリを削除するときは、macOS が管理者パスワードを求めます。</p>
+<ul>
+<li>このようなアプリは、ゴミ箱ではなく <code>/Library/Application Support/Tidemark Trash</code> に移動されます。</li>
+<li>保管庫に項目があるとリストの上に案内が表示され、<code>保管庫を空にする</code> を押すと容量が解放されます。</li>
+<li>空にする前であれば、Finder で取り出して元に戻せます（管理者パスワードが必要）。</li>
+</ul>
+<h3 id="グローバルパッケージ">グローバルパッケージ</h3>
+<p>ツールバーの <code>グローバルパッケージ</code> タブには、Homebrew、npm・pnpm・yarn・bun のグローバル、pipx、uv tool、cargo install でインストールしたものと、npx キャッシュがまとめて表示されます。</p>
+<ul>
+<li><code>アップデートを確認</code> は、Homebrew・npm・pnpm パッケージの新バージョンを確認します。<code>brew update</code> を含めてネットワークを使いますが、何も変更しません。</li>
+<li><code>新バージョンのみ</code> をオンにすると、アップデートのあるパッケージだけが表示されます。</li>
+<li><code>アップグレード</code>（1件）または <code>すべてアップグレード</code> は、内蔵ターミナルで各パッケージマネージャの公式コマンドを使って実行するため、進行状況やパスワード入力を直接確認できます。メジャーバージョンが変わる場合があります。</li>
+<li>パッケージの削除も、パッケージマネージャの公式コマンド（<code>brew uninstall</code>、<code>npm uninstall -g</code> など）で実行します。他のパッケージの <code>依存関係</code> としてインストールされたものは、Homebrew が削除を拒否することがあります。</li>
+<li>npx キャッシュは、npx が実行時にダウンロードしておいたパッケージです。ゴミ箱に移動しても、次に npx で実行すると再ダウンロードされます。</li>
+</ul>
+<h2 id="容量マップ">容量マップ</h2>
+<p>容量マップは、どのフォルダが容量を占めているかを、サイズに比例した四角形（ツリーマップ）で表示します。</p>
+<ol type="1">
+<li><code>ホームフォルダを分析</code> または <code>ディスク全体を分析（/）</code> を押します。ホームフォルダは数分かかる場合があります。</li>
+<li>フォルダの四角形をクリックすると、そのフォルダの中に入ります。上部のパス（パンくずリスト）をクリックすると、上位のフォルダに戻ります。</li>
+<li>右側のリストには、現在のフォルダのサブフォルダとファイルがサイズ順に表示され、ターミナルで開いたり <code>AIに質問</code> したりできます。</li>
+</ol>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>操作</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>⌘</code> + ホイール</td>
+<td>拡大・縮小</td>
+</tr>
+<tr class="even">
+<td><code>⌘</code> + ドラッグ</td>
+<td>拡大したマップの移動</td>
+</tr>
+<tr class="odd">
+<td><code>元のサイズ</code> / <code>マップ全体に戻る</code></td>
+<td>拡大のリセット / 基準フォルダに戻る</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>黄色の点線の枠は、整理候補に含まれているフォルダです。</li>
+<li>iCloud などのクラウド同期フォルダと他のボリュームは、ファイルをダウンロードしないようにスキップし、スキップした一覧を別に表示します。</li>
+<li>1MB 未満のフォルダはまとめて計算します。分析結果は保存され、<code>再分析</code> で新しく計算します。</li>
+</ul>
+<h3 id="大きなファイル">大きなファイル</h3>
+<p><strong>容量マップ → 大きなファイル</strong>で、大きなファイル・古いダウンロード・重複ダウンロードを選び、<strong>スキャン</strong>を押します。最小サイズは100MB・250MB・500MB・1GB・5GB、経過日数は30・90・180・365日から選べます。古いダウンロードは <code>~/Downloads</code> の直下の項目が対象で、フォルダ内の最終更新も確認します。検索・並べ替え・キャンセルに対応しています。重複は1MB以上のファイルのサイズ、先頭64KB、全体のSHA-256で確認します。</p>
+<p>個人ファイルは初期状態では未選択です。重複グループのみ、最も古い原本候補を残してコピーを選択します。件数・合計サイズ・一覧を確認してゴミ箱へ移動すると、直前にファイル情報を再確認します。Library・音楽データ・バンドル・リンク・別ボリューム・未ダウンロードのクラウド項目と、安全を確認できないフォルダは除外します。結果はメモリ内だけに保存します。アクセスが拒否された場合は、<strong>システム設定 → プライバシーとセキュリティ → ファイルとフォルダ</strong>でTidemarkを許可し、再スキャンしてください。</p>
+<h2 id="aiツール">AIツール</h2>
+<p>AIツールのディスク使用量、再ダウンロード可能なキャッシュ、実行中のAIプロセスのCPU・メモリ、対応するGPUの使用率を確認できます。ツールを展開するとキャッシュ・モデル・ユーザーデータ別のパスとサイズが表示され、<strong>Finderで表示</strong>で場所を開けます。ユーザーデータをキャッシュとして表示することはなく、この画面から削除やプロセス終了は行いません。</p>
+<p>タブを初めて開くと保存済みの測定結果を表示し、記録がない場合のみ自動測定します。<strong>再測定</strong>と<strong>キャンセル</strong>を利用できます。プロセスはタブが表示されている間、約3秒ごとに更新され、<strong>一時停止</strong>できます。CPUはコア基準で100%を超える場合があり、RSSメモリは実際の使用量より小さい場合があります。共有データによりモデル別の合計が実際のディスク使用量を上回る場合があります。取得できないGPU情報は表示されません。</p>
+<h2 id="サーバー">サーバー</h2>
+<p>TCPの待ち受けポートをプロセスごとに表示します。「更新」で再取得し、ポート・名前の検索やネットワーク公開のみの絞り込みができます。「このMacのみ」はループバック、「ネットワークに公開」は他の機器から到達し得るアドレスへのバインドを意味します（ファイアウォールの許可とは別です）。一般的なポート用途は参考情報です。</p>
+<ul>
+<li>コマンドラインと親プロセスを展開してから「終了」を選び、確認します。開始時刻・実行ファイル・ユーザーが変わっていれば中止します。SIGTERM後は最大5秒待ち、残っている場合のみSIGKILLによる強制終了を別途確認します。未保存の作業が失われる可能性があります。</li>
+<li>Tidemark自身と祖先、他のユーザー、macOS構成要素、Docker、管理サービスは直接終了できません。安全情報が不足している場合も終了ボタンは表示しません。</li>
+<li>AirPlayレシーバーはシステム設定 › 一般 › AirDropとHandoffでオフにします。Dockerは表示された <code>docker stop &lt;名前&gt;</code> でコンテナを停止します。Homebrewのボタンは内蔵ターミナルで <code>brew services stop &lt;formula&gt;</code> を準備し、Enterを押すと実行します。</li>
+<li>launchd管理項目は再起動する可能性があるためサービス設定で停止します。Ollama.appの子サーバーはメニューバーのOllamaを終了してください。開発監視プロセスがあれば確認画面で親も選択できますが、既定は子のみで、親の別の作業も停止する可能性があります。</li>
+</ul>
+<h2 id="aiに質問">AIに質問</h2>
+<p>すでにインストールして使っている AIエージェントの CLI に、いま表示している項目について質問できます。AI は削除できず、提案だけを行います。対応エージェント：Claude Code（<code>claude</code>）、Codex（<code>codex</code>）、Gemini CLI（<code>gemini</code>）、Cursor CLI（<code>cursor-agent</code>）、OpenCode（<code>opencode</code>）。</p>
+<h3 id="質問のしかた">質問のしかた</h3>
+<ol type="1">
+<li>ヘッダー右端のきらめきアイコン、詳細パネルの <code>AIに質問</code>、または項目を選んだ後に下部バーの <code>AIに質問</code> を押します。</li>
+<li>エージェントを選び、質問を入力します。画面に合ったおすすめの質問（例：「このフォルダはどのプログラムが作ったものですか？」）をクリックして入力することもできます。</li>
+<li><code>ターミナルで開始</code> を押すと、エージェントが内蔵ターミナルで実行されます。現在の画面と選択した項目の情報が一緒に渡され、会話中に画面や選択を変えると、その最新の状態を基準に回答します。</li>
+</ol>
+<p>AI は Tidemark の表示言語で回答します。エージェントはお使いのコンピュータの CLI として実行されるため、ログインや料金は各 CLI の設定に従います。</p>
+<h3 id="aiレビューのバッジ">AIレビューのバッジ</h3>
+<p>AI が項目をレビューすると、リストと詳細パネルに結果が残ります。</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>バッジ</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>整理可能</td>
+<td>削除しても問題ないという意見</td>
+</tr>
+<tr class="even">
+<td>確認後に整理</td>
+<td>内容を確認してから削除するようにという意見</td>
+</tr>
+<tr class="odd">
+<td>保持を推奨</td>
+<td>残しておくようにという意見</td>
+</tr>
+</tbody>
+</table></div>
+<p>詳細パネルの AIレビューカードには、根拠、クリーンアップ時に問題になりうる点、復元方法が併せて表示されます。あくまで AI の意見なので、クリーンアップするかどうかはご自身で判断してください。</p>
+<h3 id="aiのクリーンアップ提案">AIのクリーンアップ提案</h3>
+<ul>
+<li>AI がクリーンアップを提案すると、画面上部に <code>AIがN件のクリーンアップを提案しました</code> という案内が表示されます。選択が自動で変わることはありません。</li>
+<li><code>確認</code> を押すと、提案された項目が確認ダイアログに入り、提案の理由を自分で確認したというチェックを入れるとクリーンアップできます。</li>
+<li>AI はスキャンしたファイル内の文言にだまされることがあるため、項目はご自身で確認してください。不要であれば <code>無視</code> を押します。</li>
+</ul>
+<h2 id="ターミナルとショートカット">ターミナルとショートカット</h2>
+<p>画面下部にターミナルが内蔵されており、項目を直接確認したり、AI エージェントやパッケージのアップグレードを実行したりできます。</p>
+<ul>
+<li>ヘッダーのターミナルアイコンで開閉します。詳細パネルの <code>ターミナル</code> は、その項目のフォルダで新しいターミナルを開きます。</li>
+<li>タブ行の <code>+</code> は同じフォルダで新しいターミナルを開き、タブの <code>×</code> はそのシェルを終了します。</li>
+<li>ターミナルの上端をドラッグして高さを調整し、ダブルクリックすると既定の高さに戻ります。</li>
+</ul>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>ショートカット</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>⌘F</code></td>
+<td>現在の画面の検索欄に移動</td>
+</tr>
+<tr class="even">
+<td><code>Esc</code>（検索欄で）</td>
+<td>検索語を消去</td>
+</tr>
+<tr class="odd">
+<td><code>⌘+</code> / <code>⌘-</code> / <code>⌘0</code></td>
+<td>画面の拡大 / 縮小 / 元のサイズ（ターミナルにカーソルがあっても動作）</td>
+</tr>
+<tr class="even">
+<td><code>⌘</code> + ホイール、<code>⌘</code> + ドラッグ</td>
+<td>容量マップの拡大、移動</td>
+</tr>
+</tbody>
+</table></div>
+<p>Windows と Linux では <code>⌘</code> の代わりに <code>Ctrl</code> を使います。画面の倍率とターミナルの高さは保存され、次回起動時も維持されます。</p>
+<h2 id="設定">設定</h2>
+<p>ヘッダーの歯車アイコンで開きます。変更した値はすぐに反映され、次回起動時も維持されます。</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>選択肢</th>
+<th>デフォルト</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>テーマ</td>
+<td>システム設定 / ライト / ダーク</td>
+<td>システム設定（macOS・Windows のライト・ダークモードに従う）</td>
+</tr>
+<tr class="even">
+<td>言語</td>
+<td>システム設定 / 한국어 / English / 日本語 / 简体中文</td>
+<td>システム設定（一覧にない言語の場合は英語）</td>
+</tr>
+<tr class="odd">
+<td>AIエージェント</td>
+<td>エージェントごとの使用の有無、デフォルトのエージェント、実行ファイルのパス</td>
+<td>インストールされているものをすべて使用</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="メニューバーと自動再スキャン">メニューバーと自動再スキャン</h3>
+<ul>
+<li><code>メニューバーに表示</code>は既定でオフです。有効にするとウインドウを閉じても動作を続けます。メニューには空き容量、前回のスキャン、整理可能な容量と、Tidemarkを開く・今すぐスキャン・終了を表示します。Dockアイコンは維持します。</li>
+<li><code>ログイン時に起動</code>は既定でオフで、macOS 13以降の署名済みアプリのみ利用できます。macOSの実際の状態を表示し、承認が必要ならシステム設定で許可してください。ログイン起動時、メニューバーモードが有効な場合だけウインドウを隠します。</li>
+<li><code>整理候補を自動で再スキャン</code>は既定で手動、6時間・毎日・毎週を選べます。アプリの実行中で他の作業がなく、AC電源使用中のみ更新します。電源状態が不明ならスキップします。ファイルの削除や通知は行いません。</li>
+</ul>
+<h3 id="言語">言語</h3>
+<ul>
+<li>言語を変更すると、画面がすぐに再描画されます。すでに生成されたスキャンの警告とチェックの説明は、次回のスキャンから新しい言語で表示されます。</li>
+<li><code>システム設定</code> は起動時のシステム言語に従います。macOS では <code>システム設定 › 一般 › 言語と地域</code> の最初の優先言語です。</li>
+</ul>
+<h3 id="aiエージェント">AIエージェント</h3>
+<ul>
+<li>Tidemark は、実行ファイルがあるかどうかと、<code>--version</code> が実行できるかどうかだけを確認します。<code>再確認</code> で改めてチェックします。</li>
+<li>PATH から見つからない場合は、パス欄に実行ファイルを直接入力し（例：<code>/opt/homebrew/bin/claude</code>）、<code>適用</code> を押します。</li>
+<li>ログインやモデル設定の問題は、<code>ターミナルで実行</code> で CLI を直接起動して確認します。</li>
+</ul>
+<h3 id="スポンサー">スポンサー</h3>
+<p>設定画面下部の <code>スポンサーになる</code> から、Tidemark の開発を支援できます。</p>
+<h3 id="アプリの更新">アプリの更新</h3>
+<p>自動確認は初期状態で有効です。起動時、前回から24時間経つとGitHubのバージョン情報ファイルだけを取得します。<code>今すぐ確認</code>も使えます。 <code>更新</code>を押すとダウンロードし、署名・公証・検査値の確認後に<code>インストールして再起動</code>で更新します。整理中は再起動できません。 保存場所や検証の問題で自動更新できない場合は<code>リリースページを開く</code>から直接取得してください。ユーザーデータは保持されます。</p>
+<h2 id="安全機能">安全機能</h2>
+<p>Tidemark は削除する前に何が削除されるかを表示し、次の場合は削除しないか、もう一度確認します。</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>機能</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>読み取り専用のスキャン</td>
+<td>スキャンは検索とサイズの計測だけを行います。クリーンアップは確認ダイアログを経た場合にのみ実行されます</td>
+</tr>
+<tr class="even">
+<td>保護されたパス</td>
+<td>ホーム、デスクトップ、書類、システムフォルダとその上位のパスは、削除を拒否します</td>
+</tr>
+<tr class="odd">
+<td>公式クリーンアップコマンドを優先</td>
+<td><code>npm cache clean</code>、<code>uv cache clean</code>、<code>docker system prune</code> のように、ツールが提供する方法を優先して使います</td>
+</tr>
+<tr class="even">
+<td>リンク・他のボリューム</td>
+<td>シンボリックリンクをたどらず、他のファイルシステムにまたがりません。ハードリンクは一度だけ数え、共有容量を別に表示します</td>
+</tr>
+<tr class="odd">
+<td>プロジェクトの判定ファイル</td>
+<td>package.json、Cargo.toml、pyvenv.cfg のようなファイルがあるフォルダだけを、プロジェクトのクリーンアップ対象にします</td>
+</tr>
+<tr class="even">
+<td>git の確認</td>
+<td>コミットしていない変更とプッシュしていないコミットを表示します。git を呼び出すときは、リポジトリ設定にあるコマンド実行の経路（<code>core.fsmonitor</code> など）を無効にします</td>
+</tr>
+<tr class="odd">
+<td>危険な項目への同意</td>
+<td>危険な項目や AI の提案が含まれる場合は、確認ダイアログで別途チェックを入れないと実行されません</td>
+</tr>
+<tr class="even">
+<td>ゴミ箱</td>
+<td>ゴミ箱に移動をオンにすると元に戻せます。アプリ削除のデフォルトの方法もゴミ箱（root 所有のアプリは管理者用の削除保管庫）です</td>
+</tr>
+<tr class="odd">
+<td>パスのすり替え防止</td>
+<td>macOS・Linux では、古いファイルの削除をフォルダハンドル基準（<code>openat</code>/<code>unlinkat</code>）で行います</td>
+</tr>
+<tr class="even">
+<td>クリーンアップ履歴</td>
+<td>何をいつクリーンアップしたかを <code>clean-log.jsonl</code> に記録します</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="cliの使い方">CLIの使い方</h2>
+<p>同じエンジンをターミナルコマンド <code>tidemark</code> としても使えます。<code>clean</code> は <code>--yes</code> を付けない限り計画を表示するだけで（dry-run）、何も削除しません。</p>
+<p>インストール（リポジトリから）：<code>cargo install --path crates/cli</code></p>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>コマンド</th>
+<th>役割</th>
+<th>主なオプション</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tidemark scan</code></td>
+<td>クリーンアップ可能な項目をスキャン</td>
+<td><code>--root &lt;フォルダ&gt;</code>、<code>--no-projects</code>、<code>--no-rules</code>、<code>--min-mb &lt;MB&gt;</code>（デフォルト 1）、<code>--git-fetch</code>、<code>--json</code></td>
+</tr>
+<tr class="even">
+<td><code>tidemark clean</code></td>
+<td>項目をクリーンアップ</td>
+<td>scan のオプション + <code>--rule &lt;id&gt;</code>（複数回指定可）、<code>--max-risk safe|caution|danger</code>、<code>--unused-days &lt;N&gt;</code>、<code>--include-warned</code>、<code>--trash</code>、<code>--yes</code></td>
+</tr>
+<tr class="odd">
+<td><code>tidemark rules</code></td>
+<td>現在の OS に適用されるルールの一覧</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td><code>tidemark map [フォルダ]</code></td>
+<td>フォルダ別の容量（デフォルト：ホームフォルダ、2階層まで）</td>
+<td>基準フォルダ（例：<code>/</code>、<code>~/Desktop</code>）</td>
+</tr>
+<tr class="odd">
+<td><code>tidemark apps</code></td>
+<td>インストール済みアプリの最終使用日・サイズ・残留ファイル</td>
+<td><code>--unused-days &lt;N&gt;</code>、<code>--no-apple</code>、<code>--json</code></td>
+</tr>
+<tr class="even">
+<td><code>tidemark outdated</code></td>
+<td>新バージョンのあるグローバルパッケージ（Homebrew、npm、pnpm）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<pre class="sh"><code># スキャンのみ（何も削除しない）
+tidemark scan
+
+# 安全な項目のクリーンアップ計画を表示（dry-run）
+tidemark clean --max-risk safe
+
+# 90日以上使っていないプロジェクトの node_modules をゴミ箱へ
+tidemark clean --rule project:node_modules --unused-days 90 --trash --yes
+
+# 1つのルールだけを実際にクリーンアップ
+tidemark clean --rule npm-cache --yes</code></pre>
+<p>出力言語は OS の言語に従い、<code>TIDEMARK_LANG=en tidemark scan</code> のように変更できます（<code>ko</code>、<code>en</code>、<code>ja</code>、<code>zh</code>）。ルールの id は <code>tidemark rules</code> で確認します。</p>
+<h2 id="ユーザー定義のクリーンアップルール">ユーザー定義のクリーンアップルール</h2>
+<p>デフォルトのルールにないキャッシュを追加したり、デフォルトのルールを無効にしたりするには、<code>rules.toml</code> を作成します。場所は macOS の場合 <code>~/Library/Application Support/tidemark/rules.toml</code> です（他の OS では <code>&lt;config_dir&gt;/tidemark/rules.toml</code>）。</p>
+<ul>
+<li>形式はデフォルトのルールファイル（<code>crates/infra/rules/default.toml</code>）と同じです。</li>
+<li>同じ <code>id</code> を使うとデフォルトのルールを上書きし、<code>disabled = true</code> でデフォルトのルールを無効にします。</li>
+<li>変更後は、再スキャンすると反映されます。ユーザールールの名前と説明は翻訳されず、記述したとおりに表示されます。</li>
+</ul>
+<pre class="toml"><code># 新しいルールを追加
+[[rules]]
+id = &quot;my-tool-cache&quot;
+name = &quot;My Tool キャッシュ&quot;
+category = &quot;package_cache&quot;
+risk = &quot;safe&quot;
+description = &quot;my-tool がダウンロードしたファイルです。&quot;
+restore = &quot;次回の実行時に再ダウンロードします。&quot;
+paths = { macos = [&quot;~/Library/Caches/my-tool&quot;], linux = [&quot;~/.cache/my-tool&quot;] }
+mode = &quot;contents&quot;
+
+# デフォルトのルールを無効にする（id、name、category、risk は常に必須）
+[[rules]]
+id = &quot;yarn-cache&quot;
+name = &quot;Yarn キャッシュ&quot;
+category = &quot;package_cache&quot;
+risk = &quot;safe&quot;
+disabled = true</code></pre>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>フィールド</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code>、<code>name</code></td>
+<td>ルールの識別子と、画面に表示する名前。category、risk とともに必須</td>
+</tr>
+<tr class="even">
+<td><code>category</code></td>
+<td><code>package_cache</code>、<code>project_deps</code>、<code>build_cache</code>、<code>ai_tool</code>、<code>ai_model</code>、<code>ide</code>、<code>container</code>、<code>temp</code>、<code>logs</code>、<code>app_cache</code>、<code>trash</code></td>
+</tr>
+<tr class="odd">
+<td><code>risk</code></td>
+<td><code>safe</code> | <code>caution</code> | <code>danger</code></td>
+</tr>
+<tr class="even">
+<td><code>paths</code></td>
+<td><code>all</code>、<code>unix</code>、<code>macos</code>、<code>linux</code>、<code>windows</code> ごとのパス。<code>~</code>、<code>$VAR</code>、<code>${VAR}</code>、<code>%VAR%</code> を使用可能 プロファイル用の一階層の <code>*</code> のみ対応し、再帰的な <code>**</code> や複数階層の <code>*</code> は非対応です。</td>
+</tr>
+<tr class="odd">
+<td><code>paths.priority</code>, <code>paths.pointer</code>, <code>paths.first_existing</code></td>
+<td><code>priority</code> は最初に展開できるパスを使います。<code>pointer = { file, suffix }</code> はファイル内のホームに suffix を追加し、<code>first_existing = true</code> は最初に存在する既定のフォルダを選びます。</td>
+</tr>
+<tr class="even">
+<td><code>mode</code></td>
+<td><code>whole</code>（パスを削除） | <code>contents</code>（中身を削除） | <code>children</code>（サブ項目ごとに表示） | <code>aged_files</code>（古いファイルのみ）</td>
+</tr>
+<tr class="odd">
+<td><code>min_age_days</code>、<code>include</code>、<code>exclude</code></td>
+<td><code>aged_files</code> の日数とルート基準のglob、<code>children</code> の候補名のglob。<code>contents</code> の <code>exclude</code> はルート基準の子パスです。</td>
+</tr>
+<tr class="even">
+<td><code>command</code></td>
+<td>公式クリーンアップコマンド <code>{ program, args }</code>。指定するとまずこれを実行</td>
+</tr>
+<tr class="odd">
+<td><code>fallback_delete</code></td>
+<td>コマンドがない、または失敗した場合に直接削除（デフォルト true）</td>
+</tr>
+<tr class="even">
+<td><code>inspect</code></td>
+<td>実行前の解放量チェック：<code>simctl-unavailable</code> | <code>docker-prune</code> | <code>brew-cleanup</code></td>
+</tr>
+<tr class="odd">
+<td><code>partial</code></td>
+<td>コマンドが一部だけをクリーンアップする（表示される容量は最大値）</td>
+</tr>
+<tr class="even">
+<td><code>processes</code></td>
+<td>実行中であれば警告するプロセス名</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="データの保存場所とトラブルシューティング">データの保存場所とトラブルシューティング</h2>
+<p>Tidemark のデータはすべてお使いのコンピュータにのみ保存され、macOS では <code>~/Library/Application Support/tidemark/</code> にあります。</p>
+<div class="guide-table" role="region" tabindex="0" aria-label="表 — 横にスクロールできます"><table>
+<thead>
+<tr class="header">
+<th>ファイル</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>last-scan.json</code></td>
+<td>前回の整理候補のスキャン結果</td>
+</tr>
+<tr class="even">
+<td><code>apps.json</code></td>
+<td>インストール済みアプリ・グローバルパッケージのスキャン結果</td>
+</tr>
+<tr class="odd">
+<td><code>disk-map.json</code></td>
+<td>容量マップの分析結果</td>
+</tr>
+<tr class="even">
+<td><code>ai-reviews.json</code></td>
+<td>AIレビューの結果</td>
+</tr>
+<tr class="odd">
+<td><code>ui.json</code></td>
+<td>テーマ、言語、画面の倍率、ターミナルの高さ、AIエージェントの設定</td>
+</tr>
+<tr class="even">
+<td><code>clean-log.jsonl</code></td>
+<td>クリーンアップ履歴</td>
+</tr>
+<tr class="odd">
+<td><code>rules.toml</code></td>
+<td>ユーザー定義のクリーンアップルール（作成した場合のみ）</td>
+</tr>
+</tbody>
+</table></div>
+<p>以前の名前（Storage Clear）の <code>storage-clear</code> フォルダがある場合は、初回起動時に自動で <code>tidemark</code> に移行されます。</p>
+<h3 id="よくある質問">よくある質問</h3>
+<p><strong>クリーンアップしたのに空き容量が増えません。</strong></p>
+<ul>
+<li><code>ゴミ箱に移動</code> をオンにしてクリーンアップした場合は、ゴミ箱を空にする必要があります。管理者権限で削除したアプリは、<code>保管庫を空にする</code> を押す必要があります。</li>
+<li>pnpm のストアのように、他の場所とハードリンクで共有されているファイルは、削除しても容量が増えません。リストには <code>ハードリンク共有</code> と表示されます。</li>
+<li>Time Machine のローカルスナップショットがある場合、macOS が表示する空き容量の増加が遅れることがあります。</li>
+</ul>
+<p><strong>AIに質問でエージェントが見つかりません。</strong></p>
+<p>Tidemark は起動時にログインシェルの PATH を取得して <code>claude</code>、<code>codex</code> を探します。それでも見つからない場合は、設定で実行ファイルのパスを直接指定してください。</p>
+<p><strong>言語を変更したのに、一部の文言が以前の言語で表示されます。</strong></p>
+<p>スキャンの警告、事前チェックの説明、git の状態メモは、スキャン時の言語で保存されます。<code>再スキャン</code> すると新しい言語に切り替わります。</p>
+<p><strong>スキャン結果が実際と異なります。</strong></p>
+<p>上部のステータス行の <code>前回のスキャン結果 · N日前</code> は、保存された結果を表示していることを意味します。クリーンアップの前に <code>再スキャン</code> すると正確になります。</p>
+<p><strong>初めて開くときに「開発元を確認できない」と表示されて開けません。</strong></p>
+<p>まだ Apple の公証を受けていないビルドです。Finder でアプリを Control キーを押しながらクリック › <code>開く</code> を選ぶと、一度許可した後はそのまま開けるようになります。</p>
+
+ </main>
+ <footer class="footer"><div class="container footer-inner"><p>© 2026 Fidelio · MIT License</p><div><a href="https://github.com/thimpuKR">GitHub</a><a href="https://github.com/sponsors/thimpuKR">GitHub Sponsors</a></div></div></footer>
+</body>
+</html>
